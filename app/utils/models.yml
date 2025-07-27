@@ -3,5 +3,7 @@
 programs:
   dm:
     id: 1OG0dp7fN5DI0yqllmgddazVWmSjsQnGl
+    name: Doctor of Management
   phdtm:
     id: 1uU7GR2Ta_ytEXoAJnwZgRSr2O1SLIuET
+    name: PhD in Technology Management

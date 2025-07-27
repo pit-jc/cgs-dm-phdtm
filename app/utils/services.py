@@ -1,5 +1,5 @@
 import os
-import json
+import json, re
 from googleapiclient.discovery import build
 from google.auth.credentials import Credentials
 from google.oauth2 import service_account
@@ -11,8 +11,8 @@ import io
 class GoogleDriveService:
     def __init__(self, credentials_path):
         """Initialize Google Drive service with service account credentials."""
-        # self.SCOPES = ["https://www.googleapis.com/auth/drive"]
-        self.SCOPES = ["'https://www.googleapis.com/auth/drive.metadata.readonly'"]
+        self.SCOPES = ["https://www.googleapis.com/auth/drive"]
+        # self.SCOPES = ["'https://www.googleapis.com/auth/drive.metadata.readonly'"]
         self.credentials_path = credentials_path
         self.service = None
         self._authenticate()
@@ -86,20 +86,55 @@ class GoogleDriveService:
             raise e
 
 
-# Usage example
-def main():
-    try:
-        # Initialize the service with your credentials file
-        drive_service = GoogleDriveService("./path/to/your/credentials.json")
+def natural_sort_key(text):
+    """
+    Convert a string into a list of mixed strings and integers for natural sorting.
+    This allows proper sorting of strings with numbers (e.g., Area 1, Area 2, ..., Area 10).
+    """
 
-        # List files
-        files = drive_service.list_files()
-        print(f"Found {len(files)} files:")
-        for file in files:
-            print(f"- {file['name']} ({file['id']})")
+    def convert(text_part):
+        return int(text_part) if text_part.isdigit() else text_part.lower()
 
-        # Search for files
-        # search_results = drive_service.search_files('important')
+    return [convert(c) for c in re.split(r"(\d+)", text)]
 
-    except Exception as e:
-        print(f"Error: {e}")
+
+def sort_by_name(items, reverse=False):
+    """
+    Sort a list of dictionaries by the 'name' key.
+
+    Args:
+        items (list): List of dictionaries containing 'name' key
+        reverse (bool): If True, sort in descending order
+
+    Returns:
+        list: Sorted list of dictionaries by 'name' key
+    """
+    if not items:
+        return []
+
+    return sorted(
+        items,
+        key=lambda item: (
+            natural_sort_key(item.get("name", "")) if isinstance(item, dict) else ""
+        ),
+        reverse=reverse,
+    )
+
+
+# # Usage example
+# def main():
+#     try:
+#         # Initialize the service with your credentials file
+#         drive_service = GoogleDriveService("./path/to/your/credentials.json")
+
+#         # List files
+#         files = drive_service.list_files()
+#         print(f"Found {len(files)} files:")
+#         for file in files:
+#             print(f"- {file['name']} ({file['id']})")
+
+#         # Search for files
+#         # search_results = drive_service.search_files('important')
+
+#     except Exception as e:
+#         print(f"Error: {e}")

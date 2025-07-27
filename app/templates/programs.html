@@ -3,8 +3,12 @@
  <section class="hero is-medium">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">Doctor of Management</h1>
-        <h1>{{ program_id }}</h1>
+        <h1 class="title">{{ program.name }}</h1>
+        {% for file in files %}
+        <div class="box">
+          <div class="title is-5">{{ file.name }}</div>
+        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
