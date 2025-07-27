@@ -1,15 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
- <section class="hero is-medium">
-    <div class="hero-body">
+<section class="section">
+  <div class="container">
+    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+      <ul>
+        <li><a href="#">Bulma</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Components</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+ <section class="is-medium">
+    <!-- <div class="hero-body"> -->
       <div class="container">
-        <h1 class="title">{{ program.name }}</h1>
-        {% for file in files %}
-        <div class="box">
-          <div class="title is-5">{{ file.name }}</div>
+        <h1 class="title has-text-weight-medium">{{ program.name }}</h1>
+        <div class="fixed-grid has-1-cols-mobile has-2-cols-desktop">
+          <div class="grid">
+          {% for file in files %}
+            <div class="cell">
+              <div class="programs-area-wrapper">
+                <a class="text-color-primary" href="{{ url_for('programs.area_parameters', program_id=program.tag, area_id=file.slug, drive_id=file.id) }}">
+                <div class="box">
+                  <div class="title is-5 has-text-weight-medium">
+                    {{ file.name }}
+                  </div>
+                  <!-- <p>{{ file }}</p> -->
+                </div>
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
         </div>
-        {% endfor %}
       </div>
-    </div>
+    <!-- </div> -->
   </section>
 {% endblock content %}
+{% block scripts %}
+{% endblock scripts %}

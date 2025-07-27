@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+ <section class="hero is-medium">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">{{ program.name }}</h1>
+        {% for file in files %}
+          <div class="box" id="{{file.id}}" data-loaded="0">
+            <div class="title is-5">
+              <button class="button is-ghost" id="{{ file.id }}">{{ file.name }}</button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+{% block scripts %}
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const buttons = document.querySelectorAll('.button.is-ghost');
+      buttons.forEach(button => {
+        button.addEventListener('click', async function() {
+          console.log(`Clicked on ${button.id}`);
+
+          // find the params-holder div within the same box
+          const box = button.closest('.box');
+          if (box.dataset.loaded === '1') {
+            return;
+          }
+          const paramsHolder = box.querySelector('.title');
+          try {
+            // Insert skeleton loading animation before making the API call
+            const loadingDiv = document.createElement('div');
+            loadingDiv.classList.add('is-skeleton');
+            loadingDiv.textContent = 'Loading...';
+            paramsHolder.insertAdjacentElement('afterend', loadingDiv);
+
+            // Call getApiData function with the file ID
+            const endpoint =  "{{ url_for('programs.parameter_details', program_id=program.tag, drive_id='PLACEHOLDER')}}".replace('PLACEHOLDER', button.id);
+            const data = await getApiData(endpoint);
+            console.log('File data:', data);
+            
+            data['files'].forEach(file => {
+              console.log('File:', file.name);
+            });
+
+            box.dataset.loaded = '1';
+          } catch (error) {
+            console.error('Error fetching file data:', error);
+            // Handle error (show user notification, etc.)
+          }
+        });
+      });
+    });
+  </script>
+{% endblock scripts %}

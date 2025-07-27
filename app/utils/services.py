@@ -1,5 +1,4 @@
-import os
-import json, re
+import re, unicodedata
 from googleapiclient.discovery import build
 from google.auth.credentials import Credentials
 from google.oauth2 import service_account
@@ -119,6 +118,36 @@ def sort_by_name(items, reverse=False):
         ),
         reverse=reverse,
     )
+
+
+def slugify(text):
+    """
+    Convert a string to a URL-friendly slug.
+
+    Args:
+        text (str): The input string to slugify
+
+    Returns:
+        str: A slugified version of the input string
+    """
+    if not text:
+        return ""
+
+    # Convert to lowercase
+    text = text.lower()
+
+    # Normalize unicode characters (remove accents, etc.)
+    text = unicodedata.normalize("NFKD", text)
+    text = text.encode("ascii", "ignore").decode("ascii")
+
+    # Replace spaces and special characters with hyphens
+    text = re.sub(r"[^a-z0-9]+", "-", text)
+
+    # Remove leading/trailing hyphens and multiple consecutive hyphens
+    text = re.sub(r"^-+|-+$", "", text)
+    text = re.sub(r"-+", "-", text)
+
+    return text
 
 
 # # Usage example

@@ -1,7 +1,14 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css";
 
+:root {
+    --primary-color: #015e30;
+    --secondary-color: #e3da22;
+    --border-color-hover: #669E82;
+}
+
 body {
     font-family: 'Exo', sans-serif;
+    padding-top: 3.25rem;
 }
 
 .hero-header {
@@ -10,4 +17,44 @@ body {
     background-size: cover;
     background-attachment: fixed;
     position: relative;
+}
+
+.area-title {
+    color: var(--primary)
+}
+
+.programs-area-wrapper .box{
+    padding: 2rem;
+    border-left: 2px solid var(--secondary-color);
+}
+
+.navbar {
+    min-height: unset;
+    height: 6rem;
+    background-color: var(--primary-color);
+}
+
+.text-yellow {
+    color: var(--secondary-color);
+}
+
+.text-color-primary {
+    color: var(--primary-color);
+}
+.title.is-5 {
+  color: #015e30;
+}
+
+
+
+a:hover .box{
+  /* box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2); soft shadow */
+  border-left: 2px solid var(--border-color-hover);
+  transform: translateY(-2px); /* subtle lift */
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover .box .title {
+  /* color: var(--border-color-hover); match border or use a custom highlight color */
+  transition: color 0.2s ease-in-out;
 }

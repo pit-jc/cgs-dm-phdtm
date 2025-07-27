@@ -11,49 +11,54 @@
      <!-- <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="https://pit.edu.ph">
-        <img src="{{ url_for('images', filename='logo.png')}}" alt="Brand Logo" style="max-height: 3.5rem;">
-        <span class="has-text-weight-bold">Palompon Institute of Technology</span>
-      </a>
-  
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" 
-        data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-  
-    <div id="navbarBasicExample" class="navbar-menu">
-      <!-- <div class="navbar-start">
-        <a class="navbar-item">
-          Doctor of Management
+<body class="has-navbar-fixed-top">
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://pit.edu.ph">
+          <img src="{{ url_for('images', filename='logo.png')}}" alt="Brand Logo" style="max-height: 3.5rem;">
+          <span class="has-text-weight-bold">Palompon Institute of Technology</span>
         </a>
-  
-        <a class="navbar-item">
-          Ph.D. in Technology Management
+    
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" 
+          data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </a>
-  
-      </div> -->
-  
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              Doctor of Management
-            </a>
-            <a class="button is-light">
-              Ph.D. in Technology Management
-            </a>
+      </div>
+    
+      <div id="navbarBasicExample" class="navbar-menu">
+        <!-- <div class="navbar-start">
+          <a class="navbar-item">
+            Doctor of Management
+          </a>
+    
+          <a class="navbar-item">
+            Ph.D. in Technology Management
+          </a>
+    
+        </div> -->
+    
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                Doctor in Management
+              </a>
+              <a class="button is-light">
+                Ph.D. in Technology Management
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </nav>
-    {% block content %}
-    {% endblock content %}
+  </nav>
+
+    
+      {% block content %}
+      {% endblock content %}
+    {% block scripts %} {% endblock scripts %}
 </body>
 </html>
