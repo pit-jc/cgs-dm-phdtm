@@ -9,7 +9,7 @@
         <div class="box no-radius" id="{{file.id}}" data-loaded="0">
           <button class="button is-ghost has-text-weight-semibold" id="{{ file.id }}" data-loaded="0"> {{ file.name
             }}</button>
-          <div class="params-detail" data-loaded="0">
+          <div class="params-detail" data-loaded="0" style="display: none;">
             <div class="is-skeleton">Loading..</div>
           </div>
         </div>
@@ -31,8 +31,7 @@
         // find the params-holder div within the same box
         const box = button.closest('.box');
         const paramsDetailHolder = box.querySelector('.params-detail');
-        const skeleton = paramsDetailHolder.querySelector('is-skeleton');
-        console.log('Skeleton:', skeleton);
+        const skeleton = paramsDetailHolder.querySelector('.is-skeleton');
         paramsDetailHolder.style.display = 'block';
         if (paramsDetailHolder.dataset.loaded === '1') {
           return;
