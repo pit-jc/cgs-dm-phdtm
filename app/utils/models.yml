@@ -2,10 +2,10 @@
 
 programs:
   dm:
-    id: 1OG0dp7fN5DI0yqllmgddazVWmSjsQnGl
+    id: 1uU7GR2Ta_ytEXoAJnwZgRSr2O1SLIuET
     name: Doctor in Management
     tag: dm
   phdtm:
-    id: 1uU7GR2Ta_ytEXoAJnwZgRSr2O1SLIuET
+    id: 1OG0dp7fN5DI0yqllmgddazVWmSjsQnGl
     name: PhD in Technology Management
     tag: phdtm

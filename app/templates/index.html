@@ -1,37 +1,39 @@
 {% extends "base.html" %}
-{% block content %}  
-  <section class="hero is-fullheight-with-navbar hero-header">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title is-1 text-yellow">AACCUP Preliminary Survey Visit</h1>
-      </div>
+{% block content %}
+<section class="hero is-fullheight-with-navbar hero-header">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title main-hero-title">AACCUP <span class="has-text-white has-text-weight-normal">Preliminary Survey
+          Visit</span></h1>
     </div>
-  </section>
-  <section class="hero is-medium program-survey">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title  mb-6">Programs Under Survey</h1>
-        <div class="columns is-variable is-8">
-          <div class="column">
-            <div class="box">
-              <h2 class="title is-4"><a href="{{ url_for('programs.program_areas', program_id='dm') }}">Doctor in Management</a></h2>
-              <p>Content for the first column goes here.</p>
-            </div>
+  </div>
+</section>
+<section class="hero is-medium program-survey">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title  mb-6">Programs Under Survey</h1>
+      <div class="columns is-variable is-8">
+        <div class="column">
+          <div class="box">
+            <h2 class="title is-4"><a href="{{ url_for('programs.program_areas', program_id='dm') }}">Doctor in
+                Management</a></h2>
+            <p>Content for the first column goes here.</p>
           </div>
-          <div class="column">
-            <div class="box">
-                <h2 class="title is-4">Column 2</h2>
-              <p>Content for the second column goes here.</p>
-            </div>
+        </div>
+        <div class="column">
+          <div class="box">
+            <h2 class="title is-4">Column 2</h2>
+            <p>Content for the second column goes here.</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <section class="hero is-medium" style="background-color: aquamarine;">
-    <div class="hero-body">
+  </div>
+</section>
+<section class="hero is-medium" style="background-color: aquamarine;">
+  <div class="hero-body">
 
-      <h1 class="title">Testing</h1>
-    </div>
-  </section>
+    <h1 class="title">Testing</h1>
+  </div>
+</section>
 {% endblock content %}

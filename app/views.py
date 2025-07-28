@@ -1,4 +1,4 @@
-from sanic import Blueprint
+from sanic import Blueprint, exceptions
 from sanic.response import json
 from sanic_ext import render
 
@@ -16,11 +16,18 @@ async def get_programs(request):
 
 @bp_programs.get("/<program_id:str>", name="program_areas")
 async def get_program(request, program_id: str):
-    programs = get_model_by_name("programs")  # Example usage
+    programs = get_model_by_name("programs")
     program = programs.get(program_id)
+    if program is None:
+        raise exceptions.NotFound("Program not found")
 
     drive_service = GoogleDriveService("./credentials.json")
+    print(f"PROGRAM ---> {program.get('id'), program.get('name')}")
+    print(f"Files for program {program.get("id")}:")
     files = drive_service.list_files(program.get("id"))
+    from pprint import pprint
+
+    # pprint(files)
     sorted_files = sort_by_name(files)
     for file in sorted_files:
         file["slug"] = slugify(file["name"])
@@ -39,10 +46,16 @@ async def get_program(request, program_id: str):
     name="area_parameters",
 )
 async def get_area_parameters(request, program_id: str, area_id: str, drive_id: str):
+
     programs = get_model_by_name("programs")
     program = programs.get(program_id)
     drive_service = GoogleDriveService("./credentials.json")
     files = drive_service.list_files(drive_id)
+    print(files)
+    # for file in files:
+    #     param_content_files = drive_service.list_files(file["id"])
+    #     sorted_param_content = sort_by_name(param_content_files)
+    #     file["content"] = sorted_param_content
     sorted_files = sort_by_name(files)
     return await render(
         "parameters.html",
@@ -55,6 +68,12 @@ async def get_parameter_details(request, drive_id, program_id: str):
     programs = get_model_by_name("programs")
     program = programs.get(program_id)
     drive_service = GoogleDriveService("./credentials.json")
+
     files = drive_service.list_files(drive_id)
+
+    for file in files:
+        pdfs = drive_service.list_files(file["id"])
+        sorted_pdfs = sort_by_name(pdfs)
+        file["files"] = sorted_pdfs
     sorted_files = sort_by_name(files)
     return json({"files": sorted_files, "program": program})

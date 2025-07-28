@@ -3,7 +3,9 @@
 :root {
     --primary-color: #015e30;
     --secondary-color: #e3da22;
-    --border-color-hover: #669E82;
+    --tertiary-color: #e6e6e6;
+    /* --border-color-hover: #669E82; */
+    /* --border-color-hover: var(#E6E6E6) */
 }
 
 body {
@@ -11,22 +13,31 @@ body {
     padding-top: 3.25rem;
 }
 
+/* hero */
 .hero-header {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('img/adminbldg-dark.jpg') no-repeat center center;
+        url('img/adminbldg-dark.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     position: relative;
+}
+
+.main-hero-title {
+    font-size: 4.5rem;
+    line-height: 1.2;
+    color: var(--secondary-color)
 }
 
 .area-title {
     color: var(--primary)
 }
 
-.programs-area-wrapper .box{
+/* Wrapper */
+.programs-area-wrapper .box {
     padding: 2rem;
-    border-left: 2px solid var(--secondary-color);
+    border-left: 2px solid var(--tertiary-color);
 }
+
 
 .navbar {
     min-height: unset;
@@ -41,20 +52,36 @@ body {
 .text-color-primary {
     color: var(--primary-color);
 }
+
 .title.is-5 {
-  color: #015e30;
+    color: #015e30;
 }
 
-
-
-a:hover .box{
-  /* box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2); soft shadow */
-  border-left: 2px solid var(--border-color-hover);
-  transform: translateY(-2px); /* subtle lift */
-  transition: all 0.2s ease-in-out;
+a:hover .box {
+    /* box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2); soft shadow */
+    border-left: 3px solid var(--primary-color);
+    /* transform: translateY(-2px); subtle lift */
+    transition: all 0.2s ease-in-out;
 }
 
 a:hover .box .title {
-  /* color: var(--border-color-hover); match border or use a custom highlight color */
-  transition: color 0.2s ease-in-out;
+    /* color: var(--border-color-hover); match border or use a custom highlight color */
+    transition: color 0.2s ease-in-out;
+}
+
+.box.no-radius {
+    border-radius: 0;
+}
+
+.button.is-ghost {
+    color: var(--primary-color);
+    /* Replace with your desired color */
+    text-decoration: none;
+}
+
+.button.is-ghost:hover {
+    color: var(--primary-color);
+    /* Optional: slightly darker color on hover */
+    text-decoration: none;
+    /* Ensures underline is removed on hover */
 }

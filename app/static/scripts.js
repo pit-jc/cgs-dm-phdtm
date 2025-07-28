@@ -17,17 +17,18 @@ async function fetchApiData(endpoint, options = {}) {
         };
 
         const response = await fetch(endpoint, defaultOptions);
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
         }
-        
+
         // Check if response is JSON
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
             return await response.json();
         } else {
             // Return as text if not JSON
+            console.log(`Response content type is not JSON: ${contentType}`);
             return await response.text();
         }
     } catch (error) {
