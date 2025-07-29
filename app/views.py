@@ -3,7 +3,13 @@ from sanic.response import json
 from sanic_ext import render
 
 from utils.reader import read_models_yml, get_model_by_name
-from utils.services import GoogleDriveService, slugify, sort_by_name
+from utils.services import (
+    GoogleDriveService,
+    contains_pdf_or_folder,
+    format_files_list,
+    slugify,
+    sort_by_name,
+)
 
 bp_programs = Blueprint("programs", url_prefix="/programs")
 
@@ -51,11 +57,6 @@ async def get_area_parameters(request, program_id: str, area_id: str, drive_id: 
     program = programs.get(program_id)
     drive_service = GoogleDriveService("./credentials.json")
     files = drive_service.list_files(drive_id)
-    print(files)
-    # for file in files:
-    #     param_content_files = drive_service.list_files(file["id"])
-    #     sorted_param_content = sort_by_name(param_content_files)
-    #     file["content"] = sorted_param_content
     sorted_files = sort_by_name(files)
     return await render(
         "parameters.html",
@@ -69,11 +70,13 @@ async def get_parameter_details(request, drive_id, program_id: str):
     program = programs.get(program_id)
     drive_service = GoogleDriveService("./credentials.json")
 
-    files = drive_service.list_files(drive_id)
+    files_list = drive_service.list_files(drive_id)
 
-    for file in files:
-        pdfs = drive_service.list_files(file["id"])
-        sorted_pdfs = sort_by_name(pdfs)
-        file["files"] = sorted_pdfs
-    sorted_files = sort_by_name(files)
+    # formatted_files_list = format_files_list(files_list)
+    # print(f"Formatted list: {formatted_files_list}")
+    for file in files_list:
+        _files = drive_service.list_files(file["id"])
+        sorted_files = sort_by_name(_files)
+        file["files"] = sorted_files
+    sorted_files = sort_by_name(files_list)
     return json({"files": sorted_files, "program": program})

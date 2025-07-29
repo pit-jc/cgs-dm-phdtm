@@ -7,10 +7,13 @@
       {% for file in files %}
       <div class="params-wrapper mb-2">
         <div class="box no-radius" id="{{file.id}}" data-loaded="0">
-          <button class="button is-ghost has-text-weight-semibold" id="{{ file.id }}" data-loaded="0"> {{ file.name
-            }}</button>
-          <div class="params-detail" data-loaded="0" style="display: none;">
-            <div class="is-skeleton">Loading..</div>
+          <div class="params-header mb-2">
+            <button class="button is-ghost has-text-weight-semibold" id="{{ file.id }}" data-loaded="0"> 
+              <div class="title is-5">{{ file.name }}</div>
+            </button>
+          </div>
+          <div class="block params-detail" data-loaded="0" style="display: none;">
+            <div class="skeleton-block">Loading..</div>
           </div>
         </div>
       </div>
@@ -31,7 +34,8 @@
         // find the params-holder div within the same box
         const box = button.closest('.box');
         const paramsDetailHolder = box.querySelector('.params-detail');
-        const skeleton = paramsDetailHolder.querySelector('.is-skeleton');
+        const skeleton = paramsDetailHolder.querySelector('.skeleton-block');
+
         paramsDetailHolder.style.display = 'block';
         if (paramsDetailHolder.dataset.loaded === '1') {
           return;
@@ -48,13 +52,22 @@
           // Call getApiData function with the file ID
           const endpoint = "{{ url_for('programs.parameter_details', program_id=program.tag, drive_id='PLACEHOLDER')}}".replace('PLACEHOLDER', button.id);
           const data = await getApiData(endpoint);
-          console.log('File data:', data);
 
-          data['files'].forEach(async file => {
-            console.log('File:', file);
+          data['files'].forEach(files => {
+            console.log('Files:', files);
+            paramsDetailHolder.style.display = 'block';
             skeleton.style.display = 'none';
-            const markup = `<div class="block"><div class="title is-6 has-text-weight-medium">${JSON.stringify(file)}</div></div >`;
-            paramsDetailHolder.innerHTML += markup;
+            if (isGoogleDriveFolder(files.mimeType)) {
+              const headerMarkup = markUpParamsContent(files, true);
+              paramsDetailHolder.insertAdjacentHTML('beforeend', headerMarkup);
+            } else {
+              const markup = markUpParamsContent(files, false)
+              paramsDetailHolder.insertAdjacentHTML('beforeend', markup);
+            } 
+            files['files'].forEach(file => {
+              const markup = markUpParamsContent(file, false);
+              paramsDetailHolder.insertAdjacentHTML('beforeend', markup);
+            });
           });
         } catch (error) {
           console.error('Error fetching file data:', error);
@@ -63,6 +76,12 @@
         }
       });
     });
-  });
+  }); // end of DOMContentLoaded
+  function markUpParamsContent(file, isFolder=false) {
+    if (isFolder) {
+      return `<div class="title is-5 has-text-weight-medium">${file.name}</div>`;
+    }
+    return `<div class="has-text-weight-medium py-1"><a href="${file.webViewLink}" target="_blank">${file.name}</a></div>`;
+  }
 </script>
 {% endblock scripts %}

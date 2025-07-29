@@ -45,3 +45,18 @@ async function fetchApiData(endpoint, options = {}) {
 async function getApiData(endpoint) {
     return fetchApiData(endpoint);
 }
+
+/**
+ * Checks if a string is exactly 'application/vnd.google-apps.folder'
+ * @param {string} str - The string to check
+ * @returns {boolean} True if the string is exactly 'application/vnd.google-apps.folder', false otherwise
+ */
+function isGoogleDriveFolder(str) {
+    if (typeof str !== 'string') {
+        return false;
+    }
+    
+    return str === 'application/vnd.google-apps.folder';
+}
+
+// function markUp()

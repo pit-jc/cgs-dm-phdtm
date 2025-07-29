@@ -42,13 +42,19 @@ class GoogleDriveService:
                 .list(
                     q=query,
                     pageSize=page_size,
-                    fields="files(id, name, mimeType, createdTime)",
+                    fields="files(id, name, mimeType, webViewLink, webContentLink, thumbnailLink, fileExtension, createdTime)",
                 )
                 .execute()
             )
 
             files = results.get("files", [])
-            return files
+            # Filter out files that start with double underscores
+            filtered_files = [
+                file for file in files if not file.get("name", "").startswith("__")
+            ]
+
+            # return files
+            return filtered_files
         except Exception as e:
             print(f"Error listing files: {e}")
             raise e
@@ -152,6 +158,70 @@ def slugify(text):
     text = re.sub(r"-+", "-", text)
 
     return text
+
+
+def contains_pdf_or_folder(text):
+    """
+    Determine the file type based on text content analysis.
+
+    Analyzes the input text to determine if it represents a PDF file or folder
+    by checking for the presence of specific keywords. The function performs
+    case-insensitive matching to identify file types based on content indicators.
+
+    Args:
+        text (str): The text string to analyze for file type indicators.
+                   Should contain the name or description of a file/folder.
+                   Expected to be a non-empty string for meaningful analysis.
+
+    Returns:
+        str or None: Returns "pdf" if the text contains "pdf" (case-insensitive),
+                    "folder" if the text contains "folder" (case-insensitive),
+                    or None if the input is not a string or no matching keywords
+                    are found.
+
+    Example:
+        >>> contains_pdf_or_folder("document.pdf")
+        'pdf'
+        >>> contains_pdf_or_folder("My Folder")
+        'folder'
+        >>> contains_pdf_or_folder("image.jpg")
+        None
+    """
+    if not isinstance(text, str):
+        return None
+
+    lower_text = text.lower()
+    file_type = None
+    if "pdf" in lower_text:
+        file_type = "pdf"
+    elif "folder" in lower_text:
+        file_type = "folder"
+    return file_type
+
+
+def format_files_list(files_list):
+    """
+    Transform a list of files from Google Drive API response to a simplified format.
+
+    Args:
+        files_list (list): List of file dictionaries from Google Drive API
+
+    Returns:
+        list: List of dictionaries with format {"id": file_id, "name": file_name, "type": file_mimeType}
+    """
+    if not files_list:
+        return []
+
+    formatted_files = []
+    for file in files_list:
+        formatted_file = {
+            "id": file.get("id", ""),
+            "name": file.get("name", ""),
+            "type": contains_pdf_or_folder(file.get("mimeType", "")),
+        }
+        formatted_files.append(formatted_file)
+
+    return formatted_files
 
 
 # # Usage example

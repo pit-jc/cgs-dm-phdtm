@@ -1,6 +1,7 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css";
 
 :root {
+    /* --primary-color: #123524; */
     --primary-color: #015e30;
     --secondary-color: #e3da22;
     --tertiary-color: #e6e6e6;
@@ -11,6 +12,8 @@
 body {
     font-family: 'Exo', sans-serif;
     padding-top: 3.25rem;
+    /* set background color to #f3f1f4 */
+    background-color: #f3f1f4;
 }
 
 /* hero */
@@ -40,8 +43,8 @@ body {
 
 
 .navbar {
-    min-height: unset;
-    height: 6rem;
+    /* min-height: unset; */
+    /* height: 6rem; */
     background-color: var(--primary-color);
 }
 
