@@ -31,9 +31,6 @@ async def get_program(request, program_id: str):
     print(f"PROGRAM ---> {program.get('id'), program.get('name')}")
     print(f"Files for program {program.get("id")}:")
     files = drive_service.list_files(program.get("id"))
-    from pprint import pprint
-
-    # pprint(files)
     sorted_files = sort_by_name(files)
     for file in sorted_files:
         file["slug"] = slugify(file["name"])

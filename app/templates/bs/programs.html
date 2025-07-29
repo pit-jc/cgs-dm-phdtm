@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block main_content %}
+<div class="container-lg">
+  <section class="section">
+    <div class="row">
+      {% for file in files %}
+      <p>{{ file.name }}</p>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock main_content %}

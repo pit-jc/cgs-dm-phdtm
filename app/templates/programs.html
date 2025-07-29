@@ -13,7 +13,6 @@
   </div>
 </section>
 <section class="is-medium">
-  <!-- <div class="hero-body"> -->
   <div class="container">
     <h1 class="title has-text-weight-medium">{{ program.name }}</h1>
     <div class="fixed-grid has-1-cols-mobile has-2-cols-desktop">
@@ -27,7 +26,7 @@
                 <div class="title is-5 has-text-weight-semibold">
                   {{ file.name }}
                 </div>
-                <!-- <p>{{ file }}</p> -->
+                <p>{{ file }}</p>
               </div>
             </a>
           </div>
@@ -36,8 +35,6 @@
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </section>
 {% endblock content %}
-{% block scripts %}
-{% endblock scripts %}
+{% block scripts %}{% endblock scripts %}

@@ -9,6 +9,10 @@
     /* --border-color-hover: var(#E6E6E6) */
 }
 
+html, body {
+    height: 100%;
+    width: 100%;
+}
 body {
     font-family: 'Exo', sans-serif;
     padding-top: 3.25rem;
