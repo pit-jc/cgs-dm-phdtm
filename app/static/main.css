@@ -1,19 +1,23 @@
 /* static/main.css */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 
 :root {
   --primary-color: #015e30;
-  --secondary-color: #e3da22;
+  /* --secondary-color: #e3da22; */
+  --secondary-color: #FFFD37;
   --tertiary-color: #e6e6e6;
+  /* --section-bg-color: #f3f1f4; */
 }
 
 body {
   font-family: 'DM Sans', sans-serif;
+  background-color: #F5F5F5;
 }
 
 .section {
   padding-top: 3rem;
   padding-bottom: 3rem;
-  background-color: antiquewhite;
+  /* background-color: var(--tertiary-color); */
 }
 
 .section.hero-header {
@@ -27,3 +31,55 @@ body {
   position: relative;
   color: var(--secondary-color);
 }
+
+.section-breadcrumb {
+  background-color: var(--secondary-color);
+}
+
+ol.breadcrumb {
+  margin: 0;
+  padding: 0;
+}
+
+.btn__primary {
+  /* background-color: var(--primary-color); */
+  background-color: #fff;
+  color: var(--primary-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn__primary:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  /* transform: translateY(-2px); */
+}
+
+
+/* ACCORDION */
+
+/* When accordion is collapsed */
+.accordion-button.collapsed {
+  /* background-color: #f0f0f0; */
+  background-color: #fff;
+  /* light gray */
+  color: var(--primary-color);
+}
+
+/* When accordion is expanded */
+.accordion-button:not(.collapsed) {
+  /* background-color: var(--primary-color); */
+  background-color: #71AC90;
+  /* Bootstrap blue */
+  color: white;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-button::after {
+  filter: brightness(0) invert(1);
+  /* makes icon white */
+}
+
+/* END ACCORDION */

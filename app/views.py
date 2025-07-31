@@ -20,7 +20,7 @@ async def get_programs(request):
     return json({"programs": programs})
 
 
-@bp_programs.get("/<program_id:str>", name="program_areas")
+@bp_programs.get("/<program_id:str>/areas", name="program_areas")
 async def get_program(request, program_id: str):
     programs = get_model_by_name("programs")
     program = programs.get(program_id)
@@ -36,7 +36,7 @@ async def get_program(request, program_id: str):
         file["slug"] = slugify(file["name"])
     # return json({"files": sorted_files, "program": program})
     return await render(
-        "programs.html",
+        "areas.html",
         context={
             "program": program,
             "files": sorted_files,
@@ -45,7 +45,7 @@ async def get_program(request, program_id: str):
 
 
 @bp_programs.get(
-    "/<program_id:str>/area/<area_id:str>/<drive_id:str>",
+    "/<program_id:str>/areas/<area_id:str>/<drive_id:str>/parameters",
     name="area_parameters",
 )
 async def get_area_parameters(request, program_id: str, area_id: str, drive_id: str):

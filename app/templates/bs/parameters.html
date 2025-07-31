@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block main_content %}
+<section class="section">
+  <div class="container-lg">
+    <div class="row">
+      <div class="accordion" id="paramsCollapse">
+        {% for file in files %}
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#params{{loop.index}}" aria-expanded="true" aria-controls="params{{loop.index}}"
+              data-file-id="{{ file.id }}">
+              {{ file.name }}
+            </button>
+          </h2>
+          <div id="params{{loop.index}}" class="accordion-collapse collapse" data-bs-parent="#paramsCollapse">
+            <div class="accordion-body">
+              <div class="params-detail" data-loaded="0">
+                <div class="skeleton-block d-none">
+                  <div class="spinner-border spinner-border-sm me-2" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  Loading...
+                </div>
+                <div class="params-content"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock main_content %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+
+    accordionButtons.forEach(button => {
+      button.addEventListener('click', async function () {
+        const fileId = button.dataset.fileId;
+        const targetId = button.getAttribute('data-bs-target');
+        const accordionBody = document.querySelector(targetId + ' .params-detail');
+        const skeleton = accordionBody.querySelector('.skeleton-block');
+        const contentDiv = accordionBody.querySelector('.params-content');
+
+        // Only load content if not already loaded
+        if (accordionBody.dataset.loaded === '0') {
+          // Show loading skeleton
+          skeleton.classList.remove('d-none');
+
+          try {
+            accordionBody.dataset.loaded = '1';
+
+            // Call API to get file details
+            const endpoint = "{{ url_for('programs.parameter_details', program_id=program.tag, drive_id='PLACEHOLDER')}}".replace('PLACEHOLDER', fileId);
+            const data = await getApiData(endpoint);
+
+            // Hide skeleton
+            skeleton.classList.add('d-none');
+
+            // Process and display the data
+            data['files'].forEach(files => {
+              if (isGoogleDriveFolder(files.mimeType)) {
+                const headerMarkup = markUpParamsContent(files, true);
+                contentDiv.insertAdjacentHTML('beforeend', headerMarkup);
+              } else {
+                const markup = markUpParamsContent(files, false);
+                contentDiv.insertAdjacentHTML('beforeend', markup);
+              }
+
+              if (files['files']) {
+                files['files'].forEach(file => {
+                  const markup = markUpParamsContent(file, false);
+                  contentDiv.insertAdjacentHTML('beforeend', markup);
+                });
+              }
+            });
+
+          } catch (error) {
+            console.error('Error fetching file data:', error);
+            accordionBody.dataset.loaded = '0';
+            skeleton.classList.add('d-none');
+            contentDiv.innerHTML = '<div class="alert alert-danger">Error loading content. Please try again.</div>';
+          }
+        }
+      });
+    });
+  });
+  function markUpParamsContent(file, isFolder = false) {
+    if (isFolder) {
+      return `<div class="fw-bold fs-5 mb-2">${file.name}</div>`;
+    }
+    return `<div class="mb-1"><a href="${file.webViewLink}" target="_blank" class="text-decoration-none">${file.name}</a></div>`;
+  }
+
+  // Add the getApiData and isGoogleDriveFolder functions if they're not in scripts.js
+  async function getApiData(endpoint) {
+    const response = await fetch(endpoint);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  }
+
+  function isGoogleDriveFolder(mimeType) {
+    return mimeType === 'application/vnd.google-apps.folder';
+  }
+</script>
+{% endblock scripts %}
