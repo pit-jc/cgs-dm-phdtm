@@ -1,1 +1,27 @@
 {% extends "base.html" %}
+
+{% block body %}
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 has-text-white mb-5">
+        <span class="has-text-secondary">AACCUP</span> <span class="has-text-white">Preliminary Survey Visit</span>
+      </h1>
+      <h2 class="subtitle is-3 has-text-white-ter mb-6">
+        DM and PhD TM
+      </h2>
+      <div class="buttons is-centered">
+        <a href="{{ url_for('programs.program_areas', program_id='dm') }}" class="button is-primary is-large">
+          <span class="icon">
+            <i class="fas fa-graduation-cap"></i>Preliminary Survey Visit
+          </span>
+          <span>Explore Programs</span>
+        </a>
+        <a href="#programs" class="button is-light is-large">
+          <span>Learn More</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock body %}

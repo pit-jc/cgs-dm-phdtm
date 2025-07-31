@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_content.html" %}
 {% block main_content %}
 <section class="section">
   <div class="container-lg">
@@ -13,7 +13,7 @@
               {{ file.name }}
             </button>
           </h2>
-          <div id="params{{loop.index}}" class="accordion-collapse collapse" data-bs-parent="#paramsCollapse">
+          <div id="params{{loop.index}}" class="accordion-collapse collapse">
             <div class="accordion-body">
               <div class="params-detail" data-loaded="0">
                 <div class="skeleton-block d-none">
@@ -85,7 +85,7 @@
             console.error('Error fetching file data:', error);
             accordionBody.dataset.loaded = '0';
             skeleton.classList.add('d-none');
-            contentDiv.innerHTML = '<div class="alert alert-danger">Error loading content. Please try again.</div>';
+            contentDiv.innerHTML = '<div class="alert alert-danger">Error loading content. Please try reloading the page.</div>';
           }
         }
       });
@@ -93,22 +93,10 @@
   });
   function markUpParamsContent(file, isFolder = false) {
     if (isFolder) {
-      return `<div class="fw-bold fs-5 mb-2">${file.name}</div>`;
+      return `<div class="fw-bold mb-2">${file.name}</div>`;
     }
-    return `<div class="mb-1"><a href="${file.webViewLink}" target="_blank" class="text-decoration-none">${file.name}</a></div>`;
+    return `<div class="mb-1 px-4"><a href="${file.webViewLink}" target="_blank" class="text-decoration-none file__link">${file.name}</a></div>`;
   }
 
-  // Add the getApiData and isGoogleDriveFolder functions if they're not in scripts.js
-  async function getApiData(endpoint) {
-    const response = await fetch(endpoint);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return await response.json();
-  }
-
-  function isGoogleDriveFolder(mimeType) {
-    return mimeType === 'application/vnd.google-apps.folder';
-  }
 </script>
 {% endblock scripts %}

@@ -4,15 +4,24 @@
 :root {
   --primary-color: #015e30;
   /* --secondary-color: #e3da22; */
-  --secondary-color: #FFFD37;
+  /* --secondary-color: #FFFD37; */
+  --secondary-color: #ffde21;
   --tertiary-color: #e6e6e6;
   /* --section-bg-color: #f3f1f4; */
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Lato', 'DM Sans', sans-serif;
   background-color: #F5F5F5;
+  color: var(--primary-color);
 }
+
+/* SET DEFAULT */
+a {
+  color: var(--primary-color);
+}
+
+/* END SET DEFAULT */
 
 .section {
   padding-top: 3rem;
@@ -57,6 +66,12 @@ ol.breadcrumb {
 
 /* ACCORDION */
 
+.accordion-button {
+  transition: all 0.2s ease-in-out;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+}
+
 /* When accordion is collapsed */
 .accordion-button.collapsed {
   /* background-color: #f0f0f0; */
@@ -67,8 +82,8 @@ ol.breadcrumb {
 
 /* When accordion is expanded */
 .accordion-button:not(.collapsed) {
-  /* background-color: var(--primary-color); */
-  background-color: #71AC90;
+  background-color: var(--primary-color);
+  /* background-color: #71AC90; */
   /* Bootstrap blue */
   color: white;
 }
@@ -82,4 +97,105 @@ ol.breadcrumb {
   /* makes icon white */
 }
 
+.accordion-button:hover {
+  /* transform: translateX(2px); */
+  border-left: 2px solid var(--primary-color);
+  transition: all 0.2s ease-in-out;
+}
+
 /* END ACCORDION */
+
+/* CARDS */
+.card__clickable {
+  transition: all 0.2s ease-in-out;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.card__clickable:hover {
+  border-left: 2px solid var(--primary-color);
+  /* transform: translateY(-2px); */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); */
+}
+
+.card__clickable:hover .card-title {
+  color: var(--primary-color);
+  transition: color 0.2s ease-in-out;
+}
+
+/* END CARDS */
+
+.file__link:hover {
+  text-decoration: underline !important;
+  transition: text-decoration 0.2s ease-in-out;
+}
+
+
+/* index HERO SECTION */
+.hero.is-fullheight {
+  background: linear-gradient(135deg, var(--primary-color) 0%, rgba(1, 94, 48, 0.8) 100%),
+    url('img/adminbldg-dark.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+}
+
+.hero.is-fullheight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.hero.is-fullheight .hero-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.hero.is-fullheight .title {
+  font-size: 4rem;
+  line: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero.is-fullheight .subtitle {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.hero.is-fullheight .buttons {
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.has-text-secondary {
+  color: var(--secondary-color) !important;
+}
+
+.has-text-white {
+  color: #fff;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* END HERO SECTION */

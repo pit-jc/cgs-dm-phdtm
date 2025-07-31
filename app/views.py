@@ -54,10 +54,17 @@ async def get_area_parameters(request, program_id: str, area_id: str, drive_id: 
     program = programs.get(program_id)
     drive_service = GoogleDriveService("./credentials.json")
     files = drive_service.list_files(drive_id)
+    print(f"FILES -> {files}")
+    print(f"AREA PARAMETERS ---> {area_id}, {program_id}")
     sorted_files = sort_by_name(files)
+    area_num = None
     return await render(
         "parameters.html",
-        context={"files": sorted_files, "program": program},
+        context={
+            "files": sorted_files,
+            "program": program,
+            "area_num": area_num,
+        },
     )
 
 

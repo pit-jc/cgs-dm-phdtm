@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section class="section hero-header">
+  <div class="container-lg">
+    <h1 class="display-4 ">{{ program.name }}</h1>
+    <p class="lead text-light">Preliminary Survey</p>
+  </div>
+</section>
+{% include "_sidemenu_sitetrail.html" %}
+{% block main_content %}{% endblock main_content %}
+{% endblock body %}
