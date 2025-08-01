@@ -11,15 +11,22 @@ from utils.services import (
     sort_by_name,
 )
 
-bp_programs = Blueprint("programs", url_prefix="/programs")
+bp_programs = Blueprint("programs", url_prefix="/")
 
 
 @bp_programs.get(
-    "/programs",
+    "/<college_id:str>",
     name="programs_list",
-)  # Name the endpoint for easy routing)
-async def get_programs(request):
-    programs = read_models_yml()
+)
+async def get_programs(request, college_id: str):
+    models = read_models_yml()
+    from pprint import pprint
+
+    pprint(models)
+    print(f'COLLEGES --> {models["colleges"][college_id]}')
+    if college_id not in models["colleges"]:
+        raise exceptions.NotFound("College not found")
+
     return await render("home.html")
 
 
