@@ -14,10 +14,13 @@ from utils.services import (
 bp_programs = Blueprint("programs", url_prefix="/programs")
 
 
-@bp_programs.get("/", name="programs_list")  # Name the endpoint for easy routing)
+@bp_programs.get(
+    "/programs",
+    name="programs_list",
+)  # Name the endpoint for easy routing)
 async def get_programs(request):
     programs = read_models_yml()
-    return json({"programs": programs})
+    return await render("home.html")
 
 
 @bp_programs.get("/<program_id:str>/areas", name="program_areas")

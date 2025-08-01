@@ -1,11 +1,67 @@
 # utils/models.yml
 
-programs:
-  dm:
-    id: 1uU7GR2Ta_ytEXoAJnwZgRSr2O1SLIuET
-    name: Doctor in Management
-    tag: dm
-  phdtm:
-    id: 1OG0dp7fN5DI0yqllmgddazVWmSjsQnGl
-    name: PhD in Technology Management
-    tag: phdtm
+colleges:
+  cgs:
+    programs:
+      dm:
+        id: 1uU7GR2Ta_ytEXoAJnwZgRSr2O1SLIuET
+        name: Doctor in Management
+        tag: dm
+      phdtm:
+        id: 1OG0dp7fN5DI0yqllmgddazVWmSjsQnGl
+        name: PhD in Technology Management
+        tag: phdtm
+  cte:
+    id: 1xRf3nRu6YxQSmJTxDruXPzWW1iFLsbzE
+    programs:
+      btvted:
+        id: 1nym_nAiqHWXI04Iyfn35TqVn54LkctAc
+        name: 
+      bsed:
+        id: 1tkLW0WTlRF6Uuna2kOt8QZ-ExiD0Jybp
+        name: Bacholor of Science in Education major in Social Studies
+      bped:
+        id: 16cjmU-MtiKOVx54d7PnRtpku41CSlmdN
+        name: Bachelor in Physical Education
+      
+areas:
+  1:
+    alt: V
+    tag: vmgo
+    name: Vision, Mission, Goals and Objectives
+  2:
+    alt: II
+    tag: faculty
+    name: Faculty
+  3:
+    alt: III
+    tag: curriculum
+    name: Curriculum and Instruction
+  4:
+    alt: IV
+    tag: students
+    name: Support to students
+  5:
+    alt: V
+    tag: research
+    name: Research
+  6:
+    alt: VI
+    tag: extension
+    name: Extension and Community Involvement
+  7:
+    alt: VII
+    tag: library
+    name: Library
+  8:
+    alt: VIII
+    tag: facilities
+    name: Physical Plant and Facilities
+  9:
+    alt: IX
+    tag: laboratories
+    name: Laboratories
+  10:
+    alt: X
+    tag: admin
+    name: Administration

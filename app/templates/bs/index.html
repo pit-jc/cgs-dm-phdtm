@@ -1,27 +1,101 @@
 {% extends "base.html" %}
 
 {% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
+  style="background-color: rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px);">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="https://pit.edu.ph">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Brand Logo" height="48"
+        class="me-2 d-none d-sm-block">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Brand Logo" height="40"
+        class="me-2 d-block d-sm-none">
+      <span class="fw-bold d-none d-md-inline">Palompon Institute of Technology</span>
+      <span class="fw-bold d-inline d-md-none">PIT</span>
+    </a>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active fw-semibold" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" href="#programs">Programs</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle fw-semibold" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Graduate Studies
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark"
+            style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('programs.program_areas', program_id='dm') }}">Doctor of
+                Management</a></li>
+            <li><a class="dropdown-item" href="#">Ph.D. in Technology Management</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">All Programs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <section class="hero is-fullheight">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <h1 class="title is-1 has-text-white mb-5">
+      <!-- <div class="mb-4">
+        <div class="logo-container">
+          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo-image">
+        </div>
+      </div> -->
+      <h1 class="title has-text-white mb-5">
         <span class="has-text-secondary">AACCUP</span> <span class="has-text-white">Preliminary Survey Visit</span>
       </h1>
-      <h2 class="subtitle is-3 has-text-white-ter mb-6">
-        DM and PhD TM
-      </h2>
-      <div class="buttons is-centered">
-        <a href="{{ url_for('programs.program_areas', program_id='dm') }}" class="button is-primary is-large">
+      <div class="col-md-8">
+        <p class="lead has-text-white mx-auto">
+          Palompon Institute of Technology reaffirms its commitment to quality assurance <br> and academic excellence
+          through
+          the AACCUP preliminary survey.
+        </p>
+      </div>
+      <div>
+        <a href="{{ url_for('programs.programs_list', college_id='dm') }}" class="btn btn__main-link mb-1">
           <span class="icon">
-            <i class="fas fa-graduation-cap"></i>Preliminary Survey Visit
+            College of Graduate Studies
           </span>
-          <span>Explore Programs</span>
         </a>
-        <a href="#programs" class="button is-light is-large">
-          <span>Learn More</span>
+        <a href="#programs" class="btn btn__alt-link mb-1">
+          <span>College of Teacher Education</span>
         </a>
       </div>
     </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <!-- <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4">
+    <a href="#programs" class="text-white text-decoration-none">
+      <div class="d-flex flex-column align-items-center scroll-indicator">
+        <small class="mb-2 fw-light">Scroll Down</small>
+        <i class="bi bi-chevron-down fs-4 animate-bounce"></i>
+      </div>
+    </a>
+  </div> -->
+</section>
+<section class="section">
+  <div class="container">
+    <h1>Hello</h1>
   </div>
 </section>
 {% endblock body %}
