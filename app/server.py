@@ -17,7 +17,6 @@ app.static("/images/", "static/img/", name="images")
 
 @app.get("", name="index")
 async def index(request: Request):
-    print(app.url_for("programs.programs_list"))  # Example URL
     return await render(
         "index.html",
         context={"message": "Hello, World!"},

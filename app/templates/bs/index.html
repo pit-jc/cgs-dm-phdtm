@@ -33,7 +33,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark"
             style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{ url_for('programs.program_areas', program_id='dm') }}">Doctor of
+            <li><a class="dropdown-item" href="#">Doctor of
                 Management</a></li>
             <li><a class="dropdown-item" href="#">Ph.D. in Technology Management</a></li>
             <li>
@@ -71,12 +71,12 @@
         </p>
       </div>
       <div>
-        <a href="{{ url_for('programs.programs_list', college_id='dm') }}" class="btn btn__main-link mb-1">
+        <a href="{{ url_for('programs.programs_list', college_id='cgs') }}" class="btn btn__main-link mb-1">
           <span class="icon">
             College of Graduate Studies
           </span>
         </a>
-        <a href="#programs" class="btn btn__alt-link mb-1">
+        <a href="{{ url_for('programs.programs_list', college_id='cte') }}" class="btn btn__alt-link mb-1">
           <span>College of Teacher Education</span>
         </a>
       </div>
