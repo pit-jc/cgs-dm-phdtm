@@ -5,7 +5,7 @@
     <div class=" row">
       {% for file in files %}
       <div class="col-lg-6 col-md-6 col-sm-12 mb-1">
-        <a href="{{ url_for('programs.area_parameters', program_id=data.tag, area_id=file.slug, drive_id=file.id) }}"
+        <a href="{{ url_for('programs.area_parameters', college_id=college.tag, program_id=data.tag, area_id=file.slug, drive_id=file.id) }}"
           class="text-decoration-none">
           <div class="card h-100 shadow-sm card__clickable">
             <div class="card-body d-flex flex-column">

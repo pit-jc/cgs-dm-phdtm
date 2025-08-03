@@ -16,12 +16,12 @@ bp_programs = Blueprint("programs", url_prefix="/colleges")
     "/<college_id:str>",
     name="programs_list",
 )
-async def get_colleges(request, college_id: str):
-    models = read_models_yml()
-    colleges = models.get("colleges")
+async def get_college(request, college_id: str):
+    colleges = get_model_by_name("colleges")
     college = colleges.get(college_id)
     if college is None:
         raise exceptions.NotFound("College not found")
+    print(f"COLLEGE --> {college}")
 
     return await render(
         "home.html",
@@ -32,7 +32,7 @@ async def get_colleges(request, college_id: str):
 
 
 @bp_programs.get(
-    "/<college_id:str>/<program_id:str>/areas",
+    "/<college_id:str>/<program_id:str>",
     name="program_areas",
 )
 async def get_program_areas(request, college_id: str, program_id: str):
@@ -48,21 +48,20 @@ async def get_program_areas(request, college_id: str, program_id: str):
     for _program in programs:
         if _program["tag"] == program_id:
             program = _program
+            break
     if program is None:
         raise exceptions.NotFound("Program not found")
 
     drive_service = GoogleDriveService("./credentials.json")
-    # print(f"PROGRAM ---> {program.get('id'), program.get('name')}")
-    # print(f"Files for program {program.get("id")}:")
     files = drive_service.list_files(program.get("id"))
     print(f"Files -> {files}")
     sorted_files = sort_by_name(files)
     for file in sorted_files:
         file["slug"] = slugify(file["name"])
-    # return json({"files": sorted_files, "program": program})
     return await render(
         "areas.html",
         context={
+            "college": college,
             "data": program,
             "files": sorted_files,
         },
@@ -70,13 +69,30 @@ async def get_program_areas(request, college_id: str, program_id: str):
 
 
 @bp_programs.get(
-    "/<program_id:str>/areas/<area_id:str>/<drive_id:str>/parameters",
+    "/<college_id:str>/<program_id:str>/<area_id:str>/<drive_id:str>",
     name="area_parameters",
 )
-async def get_area_parameters(request, program_id: str, area_id: str, drive_id: str):
+async def get_area_parameters(
+    request,
+    college_id: str,
+    program_id: str,
+    area_id: str,
+    drive_id: str,
+):
+    colleges = get_model_by_name("colleges")
+    college = colleges.get(college_id)
+    if college is None:
+        raise exceptions.NotFound("College not found")
 
-    programs = get_model_by_name("programs")
-    program = programs.get(program_id)
+    programs = college.get("programs")
+    program = []
+    for _program in programs:
+        if _program["tag"] == program_id:
+            program = _program
+            break
+    if not program:
+        raise exceptions.NotFound("Program not found")
+
     drive_service = GoogleDriveService("./credentials.json")
     files = drive_service.list_files(drive_id)
     print(f"FILES -> {files}")
@@ -93,19 +109,19 @@ async def get_area_parameters(request, program_id: str, area_id: str, drive_id: 
     )
 
 
-# @bp_programs.get("<program_id:str>/parameters/<drive_id:str>", name="parameter_details")
-# async def get_parameter_details(request, drive_id, program_id: str):
-#     programs = get_model_by_name("programs")
-#     program = programs.get(program_id)
-#     drive_service = GoogleDriveService("./credentials.json")
+@bp_programs.get("<program_id:str>/parameters/<drive_id:str>", name="parameter_details")
+async def get_parameter_details(request, drive_id, program_id: str):
+    programs = get_model_by_name("programs")
+    program = programs.get(program_id)
+    drive_service = GoogleDriveService("./credentials.json")
 
-#     files_list = drive_service.list_files(drive_id)
+    files_list = drive_service.list_files(drive_id)
 
-#     # formatted_files_list = format_files_list(files_list)
-#     # print(f"Formatted list: {formatted_files_list}")
-#     for file in files_list:
-#         _files = drive_service.list_files(file["id"])
-#         sorted_files = sort_by_name(_files)
-#         file["files"] = sorted_files
-#     sorted_files = sort_by_name(files_list)
-#     return json({"files": sorted_files, "program": program})
+    # formatted_files_list = format_files_list(files_list)
+    # print(f"Formatted list: {formatted_files_list}")
+    for file in files_list:
+        _files = drive_service.list_files(file["id"])
+        sorted_files = sort_by_name(_files)
+        file["files"] = sorted_files
+    sorted_files = sort_by_name(files_list)
+    return json({"files": sorted_files, "program": program})
