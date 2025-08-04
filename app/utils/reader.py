@@ -1,7 +1,7 @@
 # utils/reader.py
 
 import yaml
-import os
+import os, re
 from typing import Dict, Any, Optional
 
 
@@ -64,3 +64,28 @@ def list_available_models(file_path: Optional[str] = None) -> list:
     """
     models = read_models_yml(file_path)
     return list(models.keys()) if isinstance(models, dict) else []
+
+
+def get_area_by_number(
+    area_text: str, file_path: Optional[str] = None
+) -> Optional[Dict[str, Any]]:
+    """
+    Get a specific area configuration by extracting the numeric key from area text.
+
+    Args:
+        area_text (str): Text containing "AREA" followed by a number (e.g., "AREA 1", "Area 2")
+        file_path (Optional[str]): Path to the models.yml file
+
+    Returns:
+        Optional[Dict[str, Any]]: Area configuration if found, None otherwise
+    """
+    models = read_models_yml("./credentials.json")
+    areas = models.get("areas", {})
+
+    # Extract number after "AREA" (case-insensitive)
+    match = re.search(r"area\s+(\d+)", area_text.lower())
+    if not match:
+        return None
+
+    area_number = match.group(1)
+    return areas.get(area_number)

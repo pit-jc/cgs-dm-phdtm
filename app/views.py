@@ -5,8 +5,10 @@ from sanic_ext import render
 from utils.reader import read_models_yml, get_model_by_name
 from utils.services import (
     GoogleDriveService,
+    extract_area_and_title,
     slugify,
     sort_by_name,
+    unslugify,
 )
 
 bp_programs = Blueprint("programs", url_prefix="/colleges")
@@ -43,7 +45,6 @@ async def get_program_areas(request, college_id: str, program_id: str):
         raise exceptions.NotFound("College not found")
 
     programs = college.get("programs")
-    print(f"PROGRAMS --> {programs}, {college} ")
     program = None
     for _program in programs:
         if _program["tag"] == program_id:
@@ -51,6 +52,7 @@ async def get_program_areas(request, college_id: str, program_id: str):
             break
     if program is None:
         raise exceptions.NotFound("Program not found")
+    print(f"PROGRAM --> {program}")
 
     drive_service = GoogleDriveService("./credentials.json")
     files = drive_service.list_files(program.get("id"))
@@ -98,24 +100,48 @@ async def get_area_parameters(
     print(f"FILES -> {files}")
     print(f"AREA PARAMETERS ---> {area_id}, {program_id}")
     sorted_files = sort_by_name(files)
-    area_num = None
+    area_title = extract_area_and_title(area_id)
+    print(f"area title --> {area_title}")
     return await render(
         "parameters.html",
         context={
+            "college": college,
             "files": sorted_files,
-            "program": program,
-            "area_num": area_num,
+            "data": program,
+            "area_title": area_title,
         },
     )
 
 
-@bp_programs.get("<program_id:str>/parameters/<drive_id:str>", name="parameter_details")
-async def get_parameter_details(request, drive_id, program_id: str):
-    programs = get_model_by_name("programs")
-    program = programs.get(program_id)
-    drive_service = GoogleDriveService("./credentials.json")
+@bp_programs.get(
+    "/<college_id:str>/<program_id:str>/parameters/<drive_id:str>",
+    name="parameter_details",
+)
+async def get_parameter_details(
+    request,
+    college_id: str,
+    drive_id: str,
+    program_id: str,
+):
+    colleges = get_model_by_name("colleges")
+    college = colleges.get(college_id)
+    if college is None:
+        raise exceptions.NotFound("College not found")
 
+    programs = college.get("programs")
+    program = []
+    for _program in programs:
+        if _program["tag"] == program_id:
+            program = _program
+            break
+    if not program:
+        raise exceptions.NotFound("Program not found")
+
+    drive_service = GoogleDriveService("./credentials.json")
     files_list = drive_service.list_files(drive_id)
+    from pprint import pprint
+
+    pprint(f"Files List -> {files_list}")
 
     # formatted_files_list = format_files_list(files_list)
     # print(f"Formatted list: {formatted_files_list}")

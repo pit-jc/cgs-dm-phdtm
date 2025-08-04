@@ -160,6 +160,79 @@ def slugify(text):
     return text
 
 
+def unslugify(slug):
+    """
+    Convert a URL-friendly slug back to a readable string.
+
+    Args:
+        slug (str): The slug string to unslugify
+
+    Returns:
+        str: A readable version of the slug with spaces and proper capitalization
+    """
+    if not slug:
+        return ""
+
+    # Replace hyphens with spaces
+    text = slug.replace("-", " ")
+
+    # Capitalize each word (title case)
+    text = text.title()
+
+    return text
+
+
+def extract_area_and_title(slug):
+    """
+    Extract area and title from a slug format string containing "area" followed by a number and title.
+
+    Args:
+        slug (str): Input slug string (e.g., "area-10-vision-mission-&-goals")
+
+    Returns:
+        tuple: A tuple containing (area, title) where:
+               - area: "Area X" format (e.g., "Area 10")
+               - title: The text after the number with proper formatting (e.g., "Vision Mission & Goals")
+               Returns (None, None) if no valid area pattern is found
+
+    Example:
+        >>> extract_area_and_title("area-10-vision-mission-&-goals")
+        ('Area 10', 'Vision Mission & Goals')
+        >>> extract_area_and_title("area-5-research-methods")
+        ('Area 5', 'Research Methods')
+    """
+    if not slug or not isinstance(slug, str):
+        return (None, None)
+
+    # Pattern to match "area-number-" at the beginning and capture the rest
+    pattern = r"^area-(\d+)-(.+)$"
+
+    match = re.search(pattern, slug.lower())
+    if not match:
+        return (None, None)
+
+    area_number = match.group(1)
+    title_slug = match.group(2)
+
+    # Format area as "Area X"
+    area = f"Area {area_number}"
+
+    # Convert slug to readable title
+    # Replace hyphens with spaces
+    title = title_slug.replace("-", " ")
+
+    # Remove special characters except &
+    title = re.sub(r"[^\w\s&]", "", title)
+
+    # Normalize whitespace
+    title = re.sub(r"\s+", " ", title).strip()
+
+    # Convert to title case
+    title = title.title() if title else ""
+
+    return (area, title)
+
+
 def contains_pdf_or_folder(text):
     """
     Determine the file type based on text content analysis.
