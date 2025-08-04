@@ -21,13 +21,17 @@ colleges:
     tag: cte
     # logo: /img/logos/cte.png
     programs:
-      - tag: btvted
+      - tag: btvted-gfd
         id: 1nym_nAiqHWXI04Iyfn35TqVn54LkctAc
         name: Bachelor of Technical-Vocational Teacher Education
-        major: Food and Service Management and  Garments, Fashion, and Design
+        major: Garments, Fashion, and Design
+      - tag: btvted-fsd
+        id: 1nym_nAiqHWXI04Iyfn35TqVn54LkctAc
+        name: Bachelor of Technical-Vocational Teacher Education
+        major: Food Service Management
       - tag: bsed
         id: 1tkLW0WTlRF6Uuna2kOt8QZ-ExiD0Jybp
-        name: Bachelor of Science in Education
+        name: Bachelor of Secondary Education
         major: Social Studies
       - tag: bped
         id: 16cjmU-MtiKOVx54d7PnRtpku41CSlmdN
