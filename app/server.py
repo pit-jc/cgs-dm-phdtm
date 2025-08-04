@@ -1,3 +1,4 @@
+import os
 from sanic import Sanic
 from sanic.request import Request
 from sanic.response import json
@@ -22,6 +23,9 @@ async def index(request: Request):
         context={"message": "Hello, World!"},
     )
 
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
 
 # def create_app(config=None) -> Sanic:
 #     app = Sanic(__name__)
