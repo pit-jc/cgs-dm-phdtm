@@ -138,7 +138,7 @@ async def get_parameter_details(
         raise exceptions.NotFound("Program not found")
 
     drive_service = GoogleDriveService("./credentials.json")
-    files_list = drive_service.list_files(drive_id)
+    files_list = drive_service.list_files(drive_id, type="pdf")
     from pprint import pprint
 
     pprint(f"Files List -> {files_list}")

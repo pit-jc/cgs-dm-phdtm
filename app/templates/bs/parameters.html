@@ -68,6 +68,11 @@
             // Hide skeleton
             skeleton.classList.add('d-none');
 
+            // Check if data.files is empty
+            if (!data.files || data.files.length === 0) {
+              contentDiv.innerHTML = '<div class="alert alert-warning">No PDF documents found.</div>';
+              return;
+            }
             // Process and display the data
             data['files'].forEach(files => {
               if (isGoogleDriveFolder(files.mimeType)) {
