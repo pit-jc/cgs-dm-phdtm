@@ -64,13 +64,13 @@
             // Call API to get file details
             const endpoint = "{{ url_for('programs.parameter_details', college_id=college.tag, program_id=data.tag, drive_id='PLACEHOLDER')}}".replace('PLACEHOLDER', fileId);
             const data = await getApiData(endpoint);
-            console.log(`DATA --> ${JSON.stringify(data.files)}`);
+
             // Hide skeleton
             skeleton.classList.add('d-none');
 
             // Check if data.files is empty
             if (!data.files || data.files.length === 0) {
-              contentDiv.innerHTML = '<div class="alert alert-warning">No PDF documents found.</div>';
+              contentDiv.innerHTML = '<div class="alert alert-warning">No PDF document(s) found.</div>';
               return;
             }
             // Process and display the data
