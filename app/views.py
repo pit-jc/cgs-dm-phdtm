@@ -20,14 +20,17 @@ bp_programs = Blueprint("programs", url_prefix="/colleges")
 )
 async def get_college(request, college_id: str):
     colleges = get_model_by_name("colleges")
+    from pprint import pprint
+
+    print(f"COLLEGES --> {colleges}")
     college = colleges.get(college_id)
     if college is None:
         raise exceptions.NotFound("College not found")
-    print(f"COLLEGE --> {college}")
 
     return await render(
         "home.html",
         context={
+            "colleges": colleges,
             "data": college,
         },
     )

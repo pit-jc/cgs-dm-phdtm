@@ -3,26 +3,42 @@
 {% block main_content %}
 <section class="section">
   <div class="container-lg">
-    <div class="mt-5 mb-3">
+    <div class="wrapper__content-header">
       <div class="row">
-        <h3>Programs Under Survey</h3>
+        <h2>Programs Under Survey</h2>
       </div>
     </div>
     <div class="row">
       {% set programs = data.programs %}
       {% set prog_count = (12 / (programs | length)) | int %}
       {% for program in programs %}
-      <div class="col-12 col-sm-{{ prog_count }} d-flex">
-        <div class="card mb-1 h-100 w-100">
-          <div class="card-body d-flex flex-column">
-            <h5>{{ program.name }}</h5>
-            {{data}}
-            <a href="{{ url_for('programs.program_areas', college_id=data.tag, program_id=program.tag) }}">View</a>
+      <!-- <div class="col-12 col-sm-{{ prog_count }}"> -->
+      <div class="col-lg-6 col-sm-12 mb-1">
+        <a href="{{ url_for('programs.program_areas', college_id=data.tag, program_id=program.tag) }}">
+          <div class="card mb-1 h-100 card__clickable">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ program.name }} {% if program.major %} - {{ program.major }}{% endif %}
+              </h5>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       {% endfor %}
     </div>
   </div>
 </section>
 {% endblock main_content %}
+{% block other_programs %}
+<section class="section">
+  <div class="container-lg">
+    <div class="row">
+      <h4>Colleges under survey</h4>
+    </div>
+    <div class="row">
+      {% for college in colleges %}
+      <a href="" class="link__to-others">{{ colleges[college].name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock other_programs %}

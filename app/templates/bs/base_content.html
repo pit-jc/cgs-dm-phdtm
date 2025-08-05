@@ -4,11 +4,14 @@
 <section class="section page__hero-header">
   <div class="container-lg">
     <h1 class="display-4 ">{{ data.name}}</h1>
-    <p class="lead text-light">Preliminary Survey</p>
+    {% if data.major %} <h4 class="display-6">{{ data.major }}</h4>{% endif %}
+    <p class="lead text-light">{% if college %} {{ college.name|upper }} {% else %} Preliminary Survey Visit {% endif %}
+    </p>
   </div>
 </section>
 {% block side_menu %}
 {% include "_sidemenu_sitetrail.html" %}
 {% endblock side_menu%}
 {% block main_content %}{% endblock main_content %}
+{% block other_programs %}{% endblock other_programs %}
 {% endblock body %}
