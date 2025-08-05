@@ -4,7 +4,7 @@
   <div class="container-lg">
     <div class="wrapper__content-header">
       <div class="row">
-        <h3>Areas</h3>
+        <h2 class="display-6">Areas</h2>
       </div>
     </div>
     <div class=" row">
@@ -26,23 +26,3 @@
     </div>
 </section>
 {% endblock main_content %}
-{% block other_programs %}
-<section class="section">
-  <div class="container-lg">
-    <div class="wrapper__content-header">
-      <div class="row">
-        <h4>Programs under survey</h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="">
-        {% set programs = college.programs %}
-        {% for program in programs %}
-        <a href="{{ url_for('programs.program_areas', college_id=college.tag, program_id=program.tag) }}"
-          class="link__to-others">{{ program.name }}</a>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-{% endblock other_programs %}

@@ -13,5 +13,37 @@
 {% include "_sidemenu_sitetrail.html" %}
 {% endblock side_menu%}
 {% block main_content %}{% endblock main_content %}
-{% block other_programs %}{% endblock other_programs %}
+{% block other_programs %}
+<section class="section">
+  <div class="container-lg">
+    <div class="mb-2">
+      <div class="row">
+        <h4 class="display-6">Other programs under survey</h4>
+      </div>
+    </div>
+    <div class="row">
+      {% set programs = data.programs %}
+      <ul class="list-unstyled">
+        {% for college in colleges %}
+        {% set tag = colleges[college].tag %}
+        {% if tag != college_id %}
+        {% set other_programs = colleges[college].programs %}
+        <li>
+          <h5>{{ colleges[college].name }}</h5>
+          <ul class="list-unstyled">
+            {% for program in other_programs %}
+            <li class="mb-1">
+              <i class="bi bi-arrow-right-short text-secondary"></i>
+              <a href="{{ url_for('programs.program_areas', college_id=colleges[college].tag, program_id=program.tag) }}"
+                class="link__to-others">{{ program.name }} {% if program.major %} - {{ program.major}} {% endif %}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>{% endblock other_programs %}
 {% endblock body %}

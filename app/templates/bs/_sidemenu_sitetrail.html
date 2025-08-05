@@ -5,33 +5,22 @@
         <li class="breadcrumb-item"><a href="/"><i class="bi bi-house-door-fill"></i></a></li>
         {% if college %}
         <li class="breadcrumb-item"><a href="#sideMenu" data-bs-toggle="offcanvas" role="button"
-            aria-controls="sideMenu">{{ college.tag|upper }}</a></li>
+            aria-controls="sideMenu">College</a></li>
         {% endif %}
-        <li class="breadcrumb-item"><a href="#sideMenu" data-bs-toggle="offcanvas" role="button"
-            aria-controls="sideMenu">Area</a></li>
-        {% if area_num %}
-        <li class="breadcrumb-item active" aria-current="page">{{ area_num }}</li>
-        {% endif %}
+        <li class="breadcrumb-item active" aria-current="page"><a href="#sideMenu" data-bs-toggle="offcanvas"
+            role="button" aria-controls="sideMenu">Area</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Area</li>
 
       </ol>
     </nav>
 
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="sideMenu" aria-labelledby="sideMenuLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="sideMenu" aria-labelledby="sideMenuLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="sideMenuLabel">Offcanvas</h5>
+        <h5 class="offcanvas-title" id="sideMenuLabel">Areas</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div class="dropdown mt-3">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            Dropdown button
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
+        <h3>{{ files }}</h3>
       </div>
     </div>
   </div>

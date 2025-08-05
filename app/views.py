@@ -32,6 +32,7 @@ async def get_college(request, college_id: str):
         context={
             "colleges": colleges,
             "data": college,
+            "college_id": college_id,
         },
     )
 
@@ -66,6 +67,8 @@ async def get_program_areas(request, college_id: str, program_id: str):
     return await render(
         "areas.html",
         context={
+            "colleges": colleges,
+            "college_id": college_id,
             "college": college,
             "data": program,
             "files": sorted_files,
@@ -108,6 +111,8 @@ async def get_area_parameters(
     return await render(
         "parameters.html",
         context={
+            "colleges": colleges,
+            "college_id": college_id,
             "college": college,
             "files": sorted_files,
             "data": program,

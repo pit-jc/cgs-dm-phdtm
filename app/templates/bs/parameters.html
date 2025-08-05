@@ -4,7 +4,11 @@
   <div class="container-lg">
     <div class="wrapper__content-header">
       <div class="row">
-        <h2>{{ area_title[0] }} &ndash; {{ area_title[1] }}</h2>
+        <div class="d-flex justify-content-between">
+          <h2 class="display-6">{{ area_title[0] }} &ndash; {{ area_title[1] }}</h2>
+          <button type="button" class="btn__outline-primary" data-bs-toggle="offcanvas" data-bs-target="#sideMenu"
+            aria-controls="sideMenu">Select an area</button>
+        </div>
       </div>
     </div>
     <div class="row">
