@@ -42,7 +42,7 @@ a {
 
 /* HERO BACKGROUND */
 .college-cte .section.page__hero-header {
-  background: linear-gradient(rgba(1, 94, 48, 0.3), rgba(1, 94, 48, 0.5)),
+  background: linear-gradient(rgba(23, 54, 89, 0.3), rgba(23, 54, 89, 0.5)),
     url('img/cte-bg.jpg') no-repeat center center;
   /* background-size: cover;
   background-attachment: fixed;
@@ -56,16 +56,20 @@ a {
     url('img/hero-bg.jpg') no-repeat center center; */
   background: linear-gradient(rgba(1, 94, 48, 0.3), rgba(1, 94, 48, 0.5)),
     url('img/hero-bg2.jpg') no-repeat center center;
-  /* background-size: cover;
+  background-size: cover;
   background-attachment: fixed;
   position: relative;
-  color: var(--secondary-color); */
+  /* color: var(--secondary-color); */
 }
 
 section.page__hero-header {
   background-size: cover;
   background-attachment: fixed;
   position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 30vh;
   /* color: var(--secondary-color); */
   color: var(--text-primary-color);
 }
