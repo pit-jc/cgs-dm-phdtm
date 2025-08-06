@@ -64,6 +64,11 @@ async def get_program_areas(request, college_id: str, program_id: str):
     sorted_files = sort_by_name(files)
     for file in sorted_files:
         file["slug"] = slugify(file["name"])
+
+    # Check if request wants JSON response
+    if request.headers.get("Accept") == "application/json":
+        return json({"files": sorted_files, "program": program, "college": college})
+
     return await render(
         "areas.html",
         context={
@@ -102,15 +107,16 @@ async def get_area_parameters(
         raise exceptions.NotFound("Program not found")
 
     drive_service = GoogleDriveService("./credentials.json")
+
+    # program_areas = drive_service.list_files(program.get("id"))
     files = drive_service.list_files(drive_id)
     print(f"FILES -> {files}")
-    print(f"AREA PARAMETERS ---> {area_id}, {program_id}")
     sorted_files = sort_by_name(files)
     area_title = extract_area_and_title(area_id)
-    print(f"area title --> {area_title}")
     return await render(
         "parameters.html",
         context={
+            # "areas": program_areas,
             "colleges": colleges,
             "college_id": college_id,
             "college": college,
