@@ -29,7 +29,6 @@
         {% set tag = _college.tag %}
         {% set other_programs = _college.programs %}
         <li>
-
           <h5 {% if loop.index==2 %} class="mt-3" {% endif %}>{{ _college.name }}</h5>
           <ul class="list-unstyled">
             {% for program in other_programs %}
@@ -42,7 +41,6 @@
             {% endif %}
             {% endfor %}
           </ul>
-
         </li>
         {% endfor %}
       </ul>
