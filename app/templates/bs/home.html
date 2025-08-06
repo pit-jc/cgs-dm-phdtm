@@ -37,6 +37,9 @@
     </div>
     <div class="row">
       {% set programs = data.programs %}
+      {% for college in colleges %}
+      {{ college }}
+      {% endfor %}
       <ul class="list-unstyled">
         {% for college in colleges %}
         {% set _college = colleges[college] %}
