@@ -10,6 +10,19 @@
   /* --section-bg-color: #f3f1f4; */
 }
 
+.college-cte {
+  --primary-color: #173659;
+  --secondary-color: #83BDE0;
+}
+
+/* HERO BACKGROUND */
+.college-cte .section.page__hero-header {
+  background: linear-gradient(rgba(1, 94, 48, 0.3), rgba(1, 94, 48, 0.5)),
+    url('img/cte-bg.jpg') no-repeat center center;
+}
+
+/* END HERO BACKGROUND */
+
 html {
   scroll-behavior: smooth;
 }
