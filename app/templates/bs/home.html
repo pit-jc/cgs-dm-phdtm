@@ -43,7 +43,6 @@
         {% set tag = _college.tag %}
         {% set other_programs = _college.programs %}
         {% if request.route.name == 'server.programs.programs_list' and tag != college_id %}
-        <p>{{ request.route.name }} and college id {{ college_id }} and tag {{ tag }}</p>
         <li>
           <h5 {% if loop.index==2 %} class="mt-3" {% endif %}>
             <a href="{{ url_for('programs.programs_list', college_id=tag) }}">{{ _college.name }}</a>
