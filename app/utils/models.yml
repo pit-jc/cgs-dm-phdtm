@@ -9,11 +9,11 @@ colleges:
     programs:
       - major:
         id: 1uU7GR2Ta_ytEXoAJnwZgRSr2O1SLIuET
-        name: Doctor in Management
+        name: Doctor of Management
         tag: dm
       - major:
         id: 1OG0dp7fN5DI0yqllmgddazVWmSjsQnGl
-        name: PhD in Technology Management
+        name: Ph.D. in Technology Management
         tag: phdtm
   cte:
     id: 1xRf3nRu6YxQSmJTxDruXPzWW1iFLsbzE

@@ -25,22 +25,25 @@
       {% set programs = data.programs %}
       <ul class="list-unstyled">
         {% for college in colleges %}
-        {% set tag = colleges[college].tag %}
-        {% if tag != college_id %}
-        {% set other_programs = colleges[college].programs %}
+        {% set _college = colleges[college] %}
+        {% set tag = _college.tag %}
+        {% set other_programs = _college.programs %}
         <li>
-          <h5>{{ colleges[college].name }}</h5>
+
+          <h5 {% if loop.index==2 %} class="mt-3" {% endif %}>{{ _college.name }}</h5>
           <ul class="list-unstyled">
             {% for program in other_programs %}
+            {% if program.tag != data.tag %}
             <li class="mb-1">
               <i class="bi bi-arrow-right-short text-secondary"></i>
-              <a href="{{ url_for('programs.program_areas', college_id=colleges[college].tag, program_id=program.tag) }}"
+              <a href="{{ url_for('programs.program_areas', college_id=tag, program_id=program.tag) }}"
                 class="link__to-others">{{ program.name }} {% if program.major %} - {{ program.major}} {% endif %}</a>
             </li>
+            {% endif %}
             {% endfor %}
           </ul>
+
         </li>
-        {% endif %}
         {% endfor %}
       </ul>
     </div>

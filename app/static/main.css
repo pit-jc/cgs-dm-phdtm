@@ -154,6 +154,10 @@ ol.breadcrumb {
 /* END ACCORDION */
 
 /* CARDS */
+.card__large {
+  min-height: 100px;
+}
+
 .card__clickable {
   transition: all 0.2s ease-in-out;
   border-left: 2px solid #d3d3d3;
