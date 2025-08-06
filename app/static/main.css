@@ -69,7 +69,6 @@ section.page__hero-header {
   background-position: center center;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 30vh;
   /* color: var(--secondary-color); */
   color: var(--text-primary-color);
 }
