@@ -18,7 +18,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <!-- <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a class="nav-link active fw-semibold" aria-current="page" href="#">Home</a>
@@ -49,12 +49,12 @@
           <a class="nav-link fw-semibold" href="#">Contact</a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </nav>
 <section class="hero is-fullheight">
-  <div class="hero-body">
-    <div class="container has-text-centered">
+  <div class="hero-body text-center">
+    <div class="container ">
       <!-- <div class="mb-4">
         <div class="logo-container">
           <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo-image">
@@ -63,20 +63,20 @@
       <h1 class="title has-text-white mb-5">
         <span class="has-text-secondary">AACCUP</span> <span class="has-text-white">Preliminary Survey Visit</span>
       </h1>
-      <div class="col-md-8">
-        <p class="lead has-text-white mx-auto">
+      <div class="col-12">
+        <p class="lead text-white mx-auto">
           Palompon Institute of Technology reaffirms its commitment to quality assurance <br> and academic excellence
           through
           the AACCUP preliminary survey.
         </p>
       </div>
       <div>
-        <a href="{{ url_for('programs.programs_list', college_id='cgs') }}" class="btn btn__main-link mb-1">
+        <a href="{{ url_for('programs.programs_list', college_id='cgs') }}" class="btn btn__main-link mb-1 py-3 px-5">
           <span class="icon">
             College of Graduate Studies
           </span>
         </a>
-        <a href="{{ url_for('programs.programs_list', college_id='cte') }}" class="btn btn__alt-link mb-1">
+        <a href="{{ url_for('programs.programs_list', college_id='cte') }}" class="btn btn__alt-link mb-1 py-3 px-5">
           <span>College of Teacher Education</span>
         </a>
       </div>

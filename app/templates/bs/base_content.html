@@ -5,8 +5,9 @@
   <div class="container-lg">
     <h1 class="display-4 ">{{ data.name}}</h1>
     {% if data.major %} <h4 class="display-6">{{ data.major }}</h4>{% endif %}
-    <p class="lead text-light">{% if college %} {{ college.name|upper }} {% else %} Preliminary Survey Visit {% endif %}
-    </p>
+    {% if college %}
+    <p class="lead text-light"> {{ college.name|upper }} </p>
+    {% endif %}
   </div>
 </section>
 {% block side_menu %}

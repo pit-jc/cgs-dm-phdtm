@@ -30,13 +30,14 @@ a {
 .college-cte {
   --primary-color: #173659;
   --secondary-color: #83BDE0;
-  /* --text-primary-color: */
+  --text-primary-color: #fff;
 }
 
 .college-cgs {
   --primary-color: #015e30;
   --secondary-color: #ffde21;
   --tertiary-color: #e6e6e6;
+  --text-primary-color: var(--secondary-color);
 }
 
 /* HERO BACKGROUND */
@@ -65,7 +66,8 @@ section.page__hero-header {
   background-size: cover;
   background-attachment: fixed;
   position: relative;
-  color: var(--secondary-color);
+  /* color: var(--secondary-color); */
+  color: var(--text-primary-color);
 }
 
 /* END HERO BACKGROUND */
