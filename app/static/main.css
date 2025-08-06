@@ -7,21 +7,9 @@
   /* --secondary-color: #FFFD37; */
   --secondary-color: #ffde21;
   --tertiary-color: #e6e6e6;
+  --text-primary-color: #fff;
   /* --section-bg-color: #f3f1f4; */
 }
-
-.college-cte {
-  --primary-color: #173659;
-  --secondary-color: #83BDE0;
-}
-
-/* HERO BACKGROUND */
-.college-cte .section.page__hero-header {
-  background: linear-gradient(rgba(1, 94, 48, 0.3), rgba(1, 94, 48, 0.5)),
-    url('img/cte-bg.jpg') no-repeat center center;
-}
-
-/* END HERO BACKGROUND */
 
 html {
   scroll-behavior: smooth;
@@ -39,6 +27,51 @@ a {
   text-decoration: none;
 }
 
+.college-cte {
+  --primary-color: #173659;
+  --secondary-color: #83BDE0;
+  /* --text-primary-color: */
+}
+
+.college-cgs {
+  --primary-color: #015e30;
+  --secondary-color: #ffde21;
+  --tertiary-color: #e6e6e6;
+}
+
+/* HERO BACKGROUND */
+.college-cte .section.page__hero-header {
+  background: linear-gradient(rgba(1, 94, 48, 0.3), rgba(1, 94, 48, 0.5)),
+    url('img/cte-bg.jpg') no-repeat center center;
+  /* background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  color: var(--secondary-color); */
+}
+
+.college-cgs .section.page__hero-header {
+  /* background-color: var(--primary-color); */
+  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('img/hero-bg.jpg') no-repeat center center; */
+  background: linear-gradient(rgba(1, 94, 48, 0.3), rgba(1, 94, 48, 0.5)),
+    url('img/hero-bg2.jpg') no-repeat center center;
+  /* background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  color: var(--secondary-color); */
+}
+
+section.page__hero-header {
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  color: var(--secondary-color);
+}
+
+/* END HERO BACKGROUND */
+
+
+
 /* END SET DEFAULT */
 
 /* SECTION HERO  */
@@ -48,17 +81,7 @@ a {
   /* background-color: var(--tertiary-color); */
 }
 
-.section.page__hero-header {
-  /* background-color: var(--primary-color); */
-  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('img/hero-bg.jpg') no-repeat center center; */
-  background: linear-gradient(rgba(1, 94, 48, 0.3), rgba(1, 94, 48, 0.5)),
-    url('img/hero-bg2.jpg') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-  position: relative;
-  color: var(--secondary-color);
-}
+
 
 .section-breadcrumb {
   background-color: var(--secondary-color);

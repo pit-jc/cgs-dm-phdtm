@@ -32,6 +32,7 @@ async def get_college(request, college_id: str):
         context={
             "colleges": colleges,
             "data": college,
+            "college": college,
             "college_id": college_id,
         },
     )
