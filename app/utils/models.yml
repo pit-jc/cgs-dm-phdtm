@@ -23,11 +23,11 @@ colleges:
     programs:
       - tag: btvted-gfd
         id: 1nym_nAiqHWXI04Iyfn35TqVn54LkctAc
-        name: Bachelor of Technical-Vocational Teacher Education
+        name: BTVTED
         major: Garments, Fashion, and Design
       - tag: btvted-fsd
         id: 1nym_nAiqHWXI04Iyfn35TqVn54LkctAc
-        name: Bachelor of Technical-Vocational Teacher Education
+        name: BTVTED
         major: Food Service Management
       - tag: bsed
         id: 1tkLW0WTlRF6Uuna2kOt8QZ-ExiD0Jybp
@@ -37,7 +37,7 @@ colleges:
         id: 16cjmU-MtiKOVx54d7PnRtpku41CSlmdN
         name: Bachelor of Physical Education
         major:
-      
+
 areas:
   1:
     alt: V
