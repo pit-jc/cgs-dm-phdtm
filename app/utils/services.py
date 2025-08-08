@@ -32,14 +32,13 @@ class GoogleDriveService:
             print(f"Authentication failed: {e}")
             raise e
 
-    def list_files(self, folder_id=None, page_size=100, type="folder"):
+    def list_files(self, folder_id=None, page_size=100, type=None):
         """List files in Google Drive or specific folder."""
         try:
-            query = (
-                f"'{folder_id}' in parents and trashed=false and {self.mime_type_map[type]}"
-                if folder_id
-                else None
-            )
+            query_string = f"'{folder_id}' in parents and trashed=false"
+            if type is not None:
+                query_string = f"'{folder_id}' in parents and trashed=false and {self.mime_type_map[type]}"
+            query = query_string if folder_id else None
 
             results = (
                 self.service.files()

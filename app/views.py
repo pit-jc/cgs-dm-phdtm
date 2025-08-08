@@ -60,8 +60,8 @@ async def get_program_areas(request, college_id: str, program_id: str):
     print(f"PROGRAM --> {program}")
 
     drive_service = GoogleDriveService("./credentials.json")
-    files = drive_service.list_files(program.get("id"))
-    print(f"Files -> {files}")
+    files = drive_service.list_files(program.get("id"), type="folder")
+    print(f"AREAS Files -> {files}")
     sorted_files = sort_by_name(files)
     for file in sorted_files:
         file["slug"] = slugify(file["name"])
@@ -110,7 +110,7 @@ async def get_area_parameters(
     drive_service = GoogleDriveService("./credentials.json")
 
     # program_areas = drive_service.list_files(program.get("id"))
-    files = drive_service.list_files(drive_id)
+    files = drive_service.list_files(drive_id, type="folder")
     print(f"FILES -> {files}")
     sorted_files = sort_by_name(files)
     area_title = extract_area_and_title(area_id)
@@ -153,7 +153,8 @@ async def get_parameter_details(
         raise exceptions.NotFound("Program not found")
 
     drive_service = GoogleDriveService("./credentials.json")
-    files_list = drive_service.list_files(drive_id, type="pdf")
+    # files_list = drive_service.list_files(drive_id, type="pdf")
+    files_list = drive_service.list_files(drive_id)
     from pprint import pprint
 
     pprint(f"Files List -> {files_list}")
@@ -161,7 +162,7 @@ async def get_parameter_details(
     # formatted_files_list = format_files_list(files_list)
     # print(f"Formatted list: {formatted_files_list}")
     for file in files_list:
-        _files = drive_service.list_files(file["id"])
+        _files = drive_service.list_files(file["id"], type="pdf")
         sorted_files = sort_by_name(_files)
         file["files"] = sorted_files
     sorted_files = sort_by_name(files_list)

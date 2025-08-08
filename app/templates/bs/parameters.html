@@ -6,8 +6,8 @@
       <div class="row">
         <div class="d-flex justify-content-between">
           <h2 class="display-6">{{ area_title[0] }} &ndash; {{ area_title[1] }}</h2>
-          <button type="button" class="btn__outline-primary" id="btnSelectArea" data-bs-toggle="offcanvas"
-            data-bs-target="#sideMenu" aria-controls="sideMenu">Select an area</button>
+          <button type="button" class="btn__outline-primary align-self-center" id="btnSelectArea"
+            data-bs-toggle="offcanvas" data-bs-target="#sideMenu" aria-controls="sideMenu">Select area</button>
           <!-- <button type="button" class="btn__outline-primary" id="btnSelectArea" aria-controls="sideMenu">Select an
             area</button> -->
         </div>
@@ -84,10 +84,10 @@
             // Process and display the data
             data['files'].forEach(files => {
               if (isGoogleDriveFolder(files.mimeType)) {
-                const headerMarkup = markUpParamsContent(files, true);
+                const headerMarkup = markUpParamsContent(files, true, true);
                 contentDiv.insertAdjacentHTML('beforeend', headerMarkup);
               } else {
-                const markup = markUpParamsContent(files, false);
+                const markup = markUpParamsContent(files, false, true);
                 contentDiv.insertAdjacentHTML('beforeend', markup);
               }
 
@@ -178,9 +178,12 @@
     });
   });
 
-  function markUpParamsContent(file, isFolder = false) {
+  function markUpParamsContent(file, isFolder = false, top_level = false) {
     if (isFolder) {
-      return `<div class="fw-bold mb-2">${file.name}</div>`;
+      return `<div class="fw-bold mb-1 mt-2">${file.name}</div>`;
+    }
+    if (top_level) {
+      return `<div class="mb-1"><a href="${file.webViewLink}" target="_blank" class="text-decoration-none file__link">${file.name}</a></div>`;
     }
     return `<div class="mb-1 px-4"><a href="${file.webViewLink}" target="_blank" class="text-decoration-none file__link">${file.name}</a></div>`;
   }
