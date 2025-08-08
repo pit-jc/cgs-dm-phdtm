@@ -157,10 +157,8 @@ async def get_parameter_details(
     files_list = drive_service.list_files(drive_id)
     from pprint import pprint
 
+    print("GET PARAMETER DETAILS")
     pprint(f"Files List -> {files_list}")
-
-    # formatted_files_list = format_files_list(files_list)
-    # print(f"Formatted list: {formatted_files_list}")
     for file in files_list:
         _files = drive_service.list_files(file["id"], type="pdf")
         sorted_files = sort_by_name(_files)

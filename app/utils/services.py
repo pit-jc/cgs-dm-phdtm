@@ -39,7 +39,6 @@ class GoogleDriveService:
             if type is not None:
                 query_string = f"'{folder_id}' in parents and trashed=false and {self.mime_type_map[type]}"
             query = query_string if folder_id else None
-
             results = (
                 self.service.files()
                 .list(
@@ -56,6 +55,14 @@ class GoogleDriveService:
                 file for file in files if not file.get("name", "").startswith("__")
             ]
 
+            # Additional filtering for PDF files - only keep files with correct mimeType
+            if type == "pdf":
+                filtered_files = [
+                    file
+                    for file in filtered_files
+                    if file.get("mimeType") == "application/pdf"
+                    or file.get("fileExtension") == "pdf"
+                ]
             # return files
             return filtered_files
         except Exception as e:
