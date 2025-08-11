@@ -182,12 +182,24 @@
     if (isFolder) {
       return `<div class="fw-bold mb-1 mt-2 px-3"><i class="bi bi-arrow-right-short text-secondary"></i>${file.name}</div>`;
     }
-    if (top_level) {
-      return `<div class="mb-1 px-3"><a href="${file.webViewLink}" target="_blank" class="text-decoration-none file__link">
-        <i class="bi bi-file-earmark"></i>&nbsp;${file.name}</a></div>`;
+    let fileIcon = '<i class="bi bi-file-earmark"></i>';
+    let badge = ''
+    if (file.mimeType === 'video/mp4') {
+      fileIcon = '<i class="bi bi-file-earmark-play"></i>';
+      badge = '&ndash; <span class="badge text-bg-danger">video</span>';
     }
-    return `<div class="mb-1 px-5"><a href="${file.webViewLink}" target="_blank" class="text-decoration-none file__link">
-      <i class="bi bi-file-earmark"></i>&nbsp;${file.name}</span></a></div>`;
+    //const fileIcon = 
+    if (top_level) {
+      return `<div class="mb-1 px-3"><a href="${file.webViewLink}" target="_blank" 
+        class="text-decoration-none file__link">
+        ${fileIcon} &nbsp;${file.name}</a> 
+        &nbsp; ${badge} </div>`;
+    }
+
+    return `<div class="mb-1 px-5"> 
+        <a href="${file.webViewLink}" target="_blank" 
+        class="text-decoration-none file__link">
+        ${fileIcon} &nbsp;${file.name}</a></div>`;
   }
 
 </script>
