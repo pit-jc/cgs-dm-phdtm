@@ -279,6 +279,10 @@ ol.breadcrumb {
   color: #fff;
 }
 
+.has-text-orange {
+  color: #FEBA4F;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

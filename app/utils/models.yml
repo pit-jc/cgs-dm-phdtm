@@ -2,41 +2,50 @@
 
 colleges:
   cgs:
-    id: 1OiaqbMdH80JYFljTerFzRXvqC01rD94b
+    id: 1lvbyloY8Cz-clGZCB4lPAL60Ej38iJ5b
     name: College of Graduate Studies
     tag: cgs
-    # logo: /img/logos/cgs.png
     programs:
       - major:
-        id: 1uU7GR2Ta_ytEXoAJnwZgRSr2O1SLIuET
-        name: Doctor of Management
-        tag: dm
-      - major:
-        id: 1OG0dp7fN5DI0yqllmgddazVWmSjsQnGl
-        name: Ph.D. in Technology Management
-        tag: phdtm
-  cte:
-    id: 1xRf3nRu6YxQSmJTxDruXPzWW1iFLsbzE
-    name: College of Teacher Education
-    tag: cte
-    # logo: /img/logos/cte.png
-    programs:
-      - tag: btvted-gfd
-        id: 1n_LtXxx8YtddAFmtf6dBKOW55Pwd4LQ-
-        name: BTVTED
-        major: Garments, Fashion, and Design
-      - tag: btvted-fsm
-        id: 1nym_nAiqHWXI04Iyfn35TqVn54LkctAc
-        name: BTVTED
-        major: Food Service Management
-      - tag: bsed
-        id: 1tkLW0WTlRF6Uuna2kOt8QZ-ExiD0Jybp
-        name: Bachelor of Secondary Education
-        major: Social Studies
-      - tag: bped
-        id: 16cjmU-MtiKOVx54d7PnRtpku41CSlmdN
-        name: Bachelor of Physical Education
-        major:
+        id: 1lvbyloY8Cz-clGZCB4lPAL60Ej38iJ5b
+        name: Master of Arts in Education - Elementary Education
+        tag: maed-eed
+  # cgs:
+  #   id: 1OiaqbMdH80JYFljTerFzRXvqC01rD94b
+  #   name: College of Graduate Studies
+  #   tag: cgs
+  #   # logo: /img/logos/cgs.png
+  #   programs:
+  #     - major:
+  #       id: 1uU7GR2Ta_ytEXoAJnwZgRSr2O1SLIuET
+  #       name: Doctor of Management
+  #       tag: dm
+  #     - major:
+  #       id: 1OG0dp7fN5DI0yqllmgddazVWmSjsQnGl
+  #       name: Ph.D. in Technology Management
+  #       tag: phdtm
+  # cte:
+  #   id: 1xRf3nRu6YxQSmJTxDruXPzWW1iFLsbzE
+  #   name: College of Teacher Education
+  #   tag: cte
+  #   # logo: /img/logos/cte.png
+  #   programs:
+  #     - tag: btvted-gfd
+  #       id: 1n_LtXxx8YtddAFmtf6dBKOW55Pwd4LQ-
+  #       name: BTVTED
+  #       major: Garments, Fashion, and Design
+  #     - tag: btvted-fsm
+  #       id: 1nym_nAiqHWXI04Iyfn35TqVn54LkctAc
+  #       name: BTVTED
+  #       major: Food Service Management
+  #     - tag: bsed
+  #       id: 1tkLW0WTlRF6Uuna2kOt8QZ-ExiD0Jybp
+  #       name: Bachelor of Secondary Education
+  #       major: Social Studies
+  #     - tag: bped
+  #       id: 16cjmU-MtiKOVx54d7PnRtpku41CSlmdN
+  #       name: Bachelor of Physical Education
+        # major:
 
 areas:
   1:
