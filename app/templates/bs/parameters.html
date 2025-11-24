@@ -4,10 +4,22 @@
   <div class="container-lg">
     <div class="wrapper__content-header">
       <div class="row">
+        <div class="d-flex mb-3">
+          <button type="button" class="btn__outline-secondary btn-back" aria-label="Go back">
+            <svg xmlns=" http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
+              aria-hidden="true" focusable="false" class="me-1">
+              <path fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 1-.5.5H3.707l4.147 4.146a.5.5 0 0 1-.708.708l-5-5a.5.5 0 0 1 0-.708l5-5a.5.5 0 1 1 .708.708L3.707 7.5H14.5A.5.5 0 0 1 15 8z" />
+            </svg>
+            Back
+          </button>
+        </div>
+      </div>
+      <div class="row">
         <div class="d-flex justify-content-between align-items-center">
           <h4 class="fw-semibold ">{{ area_title[0] }} &ndash; {{ area_title[1] }}</h4>
           <button type="button" class="btn__outline-primary " id="btnSelectArea" data-bs-toggle="offcanvas"
-            data-bs-target="#sideMenu" aria-controls="sideMenu">Select other area</button>
+            data-bs-target="#sideMenu" aria-controls="sideMenu">Select area</button>
           <!-- <button type="button" class="btn__outline-primary" id="btnSelectArea" aria-controls="sideMenu">Select an
             area</button> -->
         </div>
@@ -52,6 +64,26 @@
   document.addEventListener('DOMContentLoaded', function () {
     const accordionButtons = document.querySelectorAll('.accordion-button');
     const selectAreaButton = document.getElementById('btnSelectArea');
+    const backButton = document.querySelector('.btn-back');
+
+    if (backButton) {
+      backButton.addEventListener('click', function (ev) {
+        const url = "{{ url_for('programs.program_areas', college_id='cgs', program_id='maed-eed') }}";
+        console.log('Back button clicked, url=', url);
+        try {
+          // Try replace first
+          window.location.replace(url);
+          console.log('location.replace successful');
+          // As a fallback (use if replace appears blocked), uncomment:
+          // window.location.href = url;
+          // Or:
+          // window.setTimeout(() => window.location.replace(url), 0);
+        } catch (err) {
+          console.error('location.replace error:', err);
+          window.location.href = url;
+        }
+      });
+    }
 
     accordionButtons.forEach(button => {
       button.addEventListener('click', async function () {

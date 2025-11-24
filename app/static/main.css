@@ -8,6 +8,7 @@
   --secondary-color: #ffde21;
   --tertiary-color: #e6e6e6;
   --text-primary-color: #fff;
+  --text-secondary-color: #333;
   /* --section-bg-color: #f3f1f4; */
 }
 
@@ -16,7 +17,7 @@ html {
 }
 
 body {
-  font-family: 'Lato', 'DM Sans', sans-serif;
+  font-family: 'Open Sans', 'Lato', 'DM Sans', sans-serif;
   background-color: #F5F5F5;
   color: var(--primary-color);
 }
@@ -353,11 +354,26 @@ a.link__to-others:hover {
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
   border-radius: 0.375rem;
-  padding: 0.5rem 1rem;
+  padding: 0.35rem 1rem;
   transition: all 0.3s ease-in-out;
 }
 
 .btn__outline-primary:hover {
   background-color: var(--primary-color);
   color: #fff;
+}
+
+.btn__outline-secondary {
+  background-color: transparent;
+  border: 0px solid var(--secondary-color);
+  color: var(--text-secondary-color);
+  border-radius: 0.375rem;
+  padding: 0.35rem 1rem;
+  transition: all 0.3s ease-in-out;
+  font-size: 15px;
+}
+
+.btn__outline-secondary:hover {
+  background-color: #CBCCCD;
+  color: #333;
 }
