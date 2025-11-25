@@ -28,12 +28,13 @@
     <div class="row">
       <div class="accordion" id="paramsCollapse">
         {% for file in files %}
+        {% if not file.fileExtension %}
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
               data-bs-target="#params{{loop.index}}" aria-expanded="true" aria-controls="params{{loop.index}}"
               data-file-id="{{ file.id }}">
-              {{ file.name }}
+              <i class="bi bi-folder2 me-2"></i>{{ file.name }}
             </button>
           </h2>
           <div id="params{{loop.index}}" class="accordion-collapse collapse">
@@ -50,6 +51,16 @@
             </div>
           </div>
         </div>
+        {% else %}
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <a class="accordion-button collapsed" type="button" aria-expanded="true" href="{{ file.webViewLink }}"
+              target="_blank" aria-controls="params{{loop.index}}" data-file-id="{{ file.id }}">
+              <i class="bi bi-filetype-pdf me-2"></i>{{ file.name }}
+            </a>
+          </h2>
+        </div>
+        {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -185,7 +196,7 @@
          <div class="mb-2">
       <a href="/colleges/{{ college.tag }}/{{ data.tag }}/${file.slug}/${file.id}"
          class="text-decoration-none d-block p-2 border rounded area-link">
-        <i class="bi bi-folder me-2"></i>
+        <i class="bi bi-folder2 me-2"></i>
         ${file.name}
       </a>
     </div>
@@ -214,7 +225,7 @@
     if (isFolder) {
       return `<div class="fw-bold mb-1 mt-2 px-3"><i class="bi bi-arrow-right-short text-secondary"></i>${file.name}</div>`;
     }
-    let fileIcon = '<i class="bi bi-file-earmark"></i>';
+    let fileIcon = '<i class="bi bi-filetype-pdf"></i>';
     let badge = ''
     if (file.mimeType === 'video/mp4') {
       fileIcon = '<i class="bi bi-file-earmark-play"></i>';

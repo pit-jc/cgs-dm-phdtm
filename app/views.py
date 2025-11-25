@@ -1,3 +1,4 @@
+from pprint import pprint
 from sanic import Blueprint, exceptions
 from sanic.response import json
 from sanic_ext import render
@@ -110,9 +111,9 @@ async def get_area_parameters(
     drive_service = GoogleDriveService("./credentials.json")
 
     # program_areas = drive_service.list_files(program.get("id"))
-    files = drive_service.list_files(drive_id, type="folder")
-    print(f"FILES -> {files}")
+    files = drive_service.list_files(folder_id=drive_id)
     sorted_files = sort_by_name(files)
+    pprint(f"AREA PARAMETER FILES -> {sorted_files}")
     area_title = extract_area_and_title(area_id)
     return await render(
         "parameters.html",
@@ -154,7 +155,7 @@ async def get_parameter_details(
 
     drive_service = GoogleDriveService("./credentials.json")
     # files_list = drive_service.list_files(drive_id, type="pdf")
-    files_list = drive_service.list_files(drive_id)
+    files_list = drive_service.list_files(folder_id=drive_id)
     from pprint import pprint
 
     print("GET PARAMETER DETAILS")
