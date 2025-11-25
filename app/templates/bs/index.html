@@ -63,27 +63,25 @@
       <h3 class="has-text-secondary">
         Master of Arts in Education - Elementary Education
       </h3>
-      <h1 class="title has-text-white mb-5">
+      <h1 class="title has-text-white mb-2">
         <span class="has-text-orange">AACCUP</span> <span class="has-text-white">Level II Survey Visit</span>
       </h1>
-      <div class="col-12">
+      <div class="col-12 mb-5">
         <p class="lead text-white mx-auto">
           Palompon Institute of Technology reaffirms its commitment to quality assurance <br> and academic excellence
           through
           the AACCUP survey visit.
         </p>
       </div>
-      <div>
-        <!-- <a href="{{ url_for('programs.programs_list', college_id='cgs') }}" class="btn btn__alt-link mb-1 py-3 px-5">
-          <span class="icon">
-            Browse Documents
-          </span>
-        </a> -->
+      <div class="d-flex justify-content-center align-items-center">
         <a href="{{ url_for('programs.program_areas', college_id='cgs', program_id='maed-eed') }}"
-          class="btn btn__alt-link mb-1 py-3 px-5">
+          class="btn btn__alt-link mb-1 py-3 px-5" target="_blank">
           <span>Browse Documents</span>
         </a>
+        <p class="py-3 px-3 my-0 text-white">or</p>
+        <a href="#vid" class="py-3 btn__link">Watch the intro video</a>
       </div>
+
     </div>
   </div>
 
@@ -96,5 +94,11 @@
       </div>
     </a>
   </div> -->
+</section>
+<section class="hero">
+  <div class="ratio ratio-16x9" id="vid">
+    <iframe src="https://drive.google.com/file/d/1_wX3CwxYhZn-YxzMCyYmDuH3KWq06gjl/preview"
+      allow="autoplay; fullscreen"></iframe>
+  </div>
 </section>
 {% endblock body %}
