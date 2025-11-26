@@ -390,3 +390,8 @@ a.link__to-others:hover {
   background-color: #CBCCCD;
   color: #333;
 }
+
+/* ICON */
+.icon__file {
+  color: #900d09;
+}
